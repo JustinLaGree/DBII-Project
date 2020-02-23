@@ -1,11 +1,8 @@
 <?php
-	if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
-		$uri = 'https://';
-	} else {
-		$uri = 'http://';
-	}
-	$uri .= $_SERVER['HTTP_HOST'];
-	header('Location: '.$uri.'/dashboard/');
-	exit;
+    echo "<h1>Welcome to the Student Management Portal!</h1>";
+    echo "<br/>";
+    
+    echo "<a href='login.php'>login</a>";
+    echo "<br/>";
+    echo "<a href='register.php'>register</a>";
 ?>
-Something is wrong with the XAMPP installation :-(
