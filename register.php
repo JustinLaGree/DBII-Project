@@ -14,7 +14,14 @@
         <br />
         Email : <input type="text" name="email" />
         <br />
-        Password : <input type="text" name="password" />
+
+<?php
+    if (isset($_GET['Student'])){
+        echo "Parent Email : <input type='text' name='parentemail' /><br/>";
+    }
+?>
+
+        Password : <input type="password" name="password" />
         <br />
         ID : <input type="text" name="id" />
         <br />
@@ -28,30 +35,34 @@
 
 <?php
 
-$con = mysqli_connect('localhost', 'root', '');
-mysqli_select_db($con, 'DB2');
-
-
-
-$FullName = $_POST['fullname'];
-$PhoneNumber = $_POST['phone'];
-$Email = $_POST['email'];
-$Password = $_POST['password'];
-$ID = $_POST['id'];
-
-$sql = "INSERT INTO users (id, email, password, name, phone) VALUES ('$ID', '$Email', '$Password', '$FullName', '$PhoneNumber')";
-
-if(!mysqli_query($con, $sql))
+if (isset($_POST['id']))
 {
-    echo 'Not Inserted';
-    echo mysqli_error($con);
-}
-else
-{
-    echo 'Inserted';
-}
+    $con = mysqli_connect('localhost', 'root', '');
+    mysqli_select_db($con, 'DB2');
 
-//header("refresh:10; url=register.html");
+    $isStudent = isset($_GET['Student']);
+
+    $fullName = $_POST['fullname'];
+    $phoneNumber = $_POST['phone'];
+    $email = $_POST['email'];
+    $parentEmail = (array_key_exists('parentemail', $_POST))
+ 	? $_POST['parentemail']
+	: "";
+    $password = $_POST['password'];
+    $id = $_POST['id'];
+
+    $sql = "INSERT INTO users (id, email, password, name, phone) VALUES ('$id', '$email', '$password', '$fullName', '$phoneNumber')";
+
+    if(!mysqli_query($con, $sql))
+    {
+        echo 'Not Inserted';
+        echo mysqli_error($con);
+    }
+    else
+    {
+        echo 'Inserted';
+    }
+}
 
 
 ?>

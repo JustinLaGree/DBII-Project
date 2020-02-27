@@ -12,11 +12,11 @@
     
     <label
 <?php
-    if (!array_key_exists('HTTP_LOGIN_FAILED', $_SERVER)){
+    if (!array_key_exists('LoginFailed', $_GET)){
         echo "style = 'display: none'";
     }
 ?>
-    >Invalid login attempt! Server did not recognize email/password combination.</label>
+    >Invalid login attempt! <br/>Server did not recognize email/password combination.</label>
 </form>
 
 

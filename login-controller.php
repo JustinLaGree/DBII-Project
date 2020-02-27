@@ -19,7 +19,8 @@ if (isset($_POST['form_submitted'])){
                 echo "id: " . $row["id"]. " - Name: " . $row["name"]. "<br>";
             }
         } else {
-            echo "0 results";
+            header("Location: login.php?LoginFailed");
+	
         }
     }
 }
