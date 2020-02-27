@@ -51,7 +51,7 @@ else
     echo 'Inserted';
 }
 
-header("refresh:10; url=register.html");
+//header("refresh:10; url=register.html");
 
 
 ?>

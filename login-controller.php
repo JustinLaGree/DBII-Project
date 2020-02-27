@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "db2";
+$dbname = "DB2";
 
 if (isset($_POST['form_submitted'])){
     $mysqli = new mysqli($servername, $username, $password, $dbname);
