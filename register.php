@@ -1,3 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Register</title>
+</head>
+<body>
+
+    <form action="register.php" method="post">
+
+        Full Name : <input type="text" name="fullname" />
+        <br />
+        Phone Number : <input type="text" name="phone" />
+        <br />
+        Email : <input type="text" name="email" />
+        <br />
+        Password : <input type="text" name="password" />
+        <br />
+        ID : <input type="text" name="id" />
+        <br />
+        <input type="submit" value="Insert" />
+
+    </form>
+
+</body>
+</html>
+
+
 <?php
 
 $con = mysqli_connect('localhost', 'root', '');
