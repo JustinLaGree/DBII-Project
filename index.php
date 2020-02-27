@@ -4,5 +4,6 @@
     
     echo "<a href='login.php'>login</a>";
     echo "<br/>";
-    echo "<a href='register.php'>register</a>";
+    echo "<a href='register.html'>register</a>";
 ?>
+
