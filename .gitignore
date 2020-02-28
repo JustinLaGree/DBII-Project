@@ -7,3 +7,7 @@ favicon.ico
 dashboard/
 img/
 xampp/
+
+#mac garbage
+.DS_store
+._*.*
