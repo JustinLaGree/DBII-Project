@@ -46,8 +46,8 @@ if (isset($_POST['id']))
     $phoneNumber = $_POST['phone'];
     $email = $_POST['email'];
     $parentEmail = (array_key_exists('parentemail', $_POST))
- 	? $_POST['parentemail']
-	: "";
+ 	    ? $_POST['parentemail']
+	    : "";
     $password = $_POST['password'];
     $id = $_POST['id'];
 
