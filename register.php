@@ -23,8 +23,6 @@
 
         Password : <input type="password" name="password" />
         <br />
-        ID : <input type="text" name="id" />
-        <br />
         <input type="submit" value="Insert" />
 
     </form>
@@ -35,7 +33,7 @@
 
 <?php
 
-if (isset($_POST['id']))
+if (isset($_POST['fullname']))
 {
     $con = mysqli_connect('localhost', 'root', '');
     mysqli_select_db($con, 'DB2');
@@ -49,9 +47,9 @@ if (isset($_POST['id']))
  	? $_POST['parentemail']
 	: "";
     $password = $_POST['password'];
-    $id = $_POST['id'];
+    //$id = $_POST['id'];
 
-    $sql = "INSERT INTO users (id, email, password, name, phone) VALUES ('$id', '$email', '$password', '$fullName', '$phoneNumber')";
+    $sql = "INSERT INTO users (email, password, name, phone) VALUES ('$email', '$password', '$fullName', '$phoneNumber')";
 
     if(!mysqli_query($con, $sql))
     {
