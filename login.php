@@ -8,15 +8,15 @@
 
     <input type="hidden" name="form_submitted" value="1" />
 
-    <input type="submit"/><br/><br/>
+    <input type="submit" value="Login"/><br/><br/>
     
-    <label
-<?php
+    <label <?php
+    //display error message if LoginFailed is specified in the GET header
     if (!array_key_exists('LoginFailed', $_GET)){
         echo "style = 'display: none'";
     }
-?>
-    >Invalid login attempt! <br/>Server did not recognize email/password combination.</label>
+    ?> >Invalid login attempt! <br/>Server did not recognize email/password combination.</label>
+
 </form>
 
 
