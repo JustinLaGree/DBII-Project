@@ -16,8 +16,9 @@
         <br />
 
 <?php
-    if (isset($_GET['Student'])){
+    if (isset($_GET['Student']) || isset($_POST['grade'])){
         echo "Parent Email : <input type='text' name='parentemail' /><br/>";
+        echo "Grade Level : <input type='text' name='grade' /><br/>";
     }
 ?>
 
@@ -35,10 +36,9 @@
 
 if (isset($_POST['fullname']))
 {
-    $con = mysqli_connect('localhost', 'root', '');
-    mysqli_select_db($con, 'DB2');
+    $mysqli = new mysqli('localhost', 'root', '', 'DB2');
 
-    $isStudent = isset($_GET['Student']);
+    $isStudent = isset($_POST['grade']);
 
     $fullName = $_POST['fullname'];
     $phoneNumber = $_POST['phone'];
@@ -46,20 +46,61 @@ if (isset($_POST['fullname']))
     $parentEmail = (array_key_exists('parentemail', $_POST))
  	? $_POST['parentemail']
 	: "";
+    $grade = (array_key_exists('grade', $_POST))
+ 	? $_POST['grade']
+	: "";
     $password = $_POST['password'];
-    //$id = $_POST['id'];
 
-    $sql = "INSERT INTO users (email, password, name, phone) VALUES ('$email', '$password', '$fullName', '$phoneNumber')";
+    //prepare a new query where we get the use with specified email
+    $sql = "INSERT INTO users (email, password, name, phone) VALUES ('$email', '$password', '$fullName', '$phoneNumber')"; 
 
-    if(!mysqli_query($con, $sql))
+    //get the result of the select query
+    if(!$mysqli->query($sql))
     {
-        echo 'Not Inserted';
-        echo mysqli_error($con);
+        echo 'Not Inserted - User';
+        echo mysqli_error($mysqli);
+        return;
     }
     else
     {
         echo 'Inserted';
     }
+
+    $insertId = $mysqli->insert_id;
+    echo "insert: $insertId";
+    
+    if ($isStudent)
+    {
+        $sql_insert_student = "INSERT INTO students (student_id, grade, parent_id)
+                                SELECT $insertId, $grade, id
+                                FROM users
+                                WHERE email = '$parentEmail'";
+
+
+
+        if(!mysqli_query($mysqli, $sql_insert_student))
+        {
+            echo 'Not Inserted: Student';
+            echo mysqli_error($mysqli);
+        }
+        else
+        {
+            echo 'Inserted';
+        }
+    }
+    else
+    {
+        $sql_insert_parent = "INSERT INTO parents (parent_id) VALUES ('$insertId')";
+        if(!mysqli_query($mysqli, $sql_insert_parent))
+        {
+            echo 'Not Inserted: Parent';
+            echo mysqli_error($mysqli);
+        }
+        else
+        {
+            echo 'Inserted';
+        }
+        }
 }
 
 
