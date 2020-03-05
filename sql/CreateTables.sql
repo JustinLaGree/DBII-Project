@@ -90,8 +90,8 @@ CREATE TABLE `groups` (
   `group_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `mentor_grade_req` int(11) NOT NULL,
-  `mentee_grade_req` int(11) NOT NULL,
+  `mentor_grade_req` int(11),
+  `mentee_grade_req` int(11),
   PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -237,3 +237,31 @@ VALUES
 (7, 11, 2),
 (9, 9, 8),
 (10, 6, 1);
+
+INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
+VALUES 
+(1006, 'Group 6', 'Grade 6', 9, null);
+
+INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
+VALUES 
+(1007, 'Group 7', 'Grade 7', 10, null);
+
+INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
+VALUES 
+(1008, 'Group 8', 'Grade 8', 11, null);
+
+INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
+VALUES 
+(1009, 'Group 9', 'Grade 9', 12, 6);
+
+INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
+VALUES 
+(1010, 'Group 10', 'Grade 10', null, 7);
+
+INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
+VALUES 
+(1011, 'Group 11', 'Grade 11', null, 8);
+
+INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
+VALUES 
+(1012, 'Group 12', 'Grade 12', null, 9);
