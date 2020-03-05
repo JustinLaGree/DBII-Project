@@ -89,9 +89,9 @@ CREATE TABLE `admins` (
 CREATE TABLE `groups` (
   `group_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `mentor_grade_req` int(11),
-  `mentee_grade_req` int(11),
+  `description` int(11) DEFAULT NULL,
+  `mentor_grade_req` int(11) DEFAULT NULL,
+  `mentee_grade_req` int(11) DEFAULT NULL,
   PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -217,11 +217,12 @@ VALUES
 (7, 'LannySmith@gmail.com', 'chair', 'Lanny Smith', '833-800-8876'),
 (8, 'SarahWelton@gmail.com', 'tilefloor', 'Sarah Welton', '800-800-8111'),
 (9, 'MileyWelton@gmail.com', 'waterbottle', 'Miley Welton', '800-800-8222'),
-(10, 'DannyJohnson@gmail.com', 'whiteboard', 'Danny Johnson', '808-800-9999');
+(10, 'DannyJohnson@gmail.com', 'whiteboard', 'Danny Johnson', '808-800-9999'),
+(11, 'admin@gmail.com', 'password', 'Admin', null);
 
 INSERT INTO admins 
 VALUES 
-(6);
+(11);
 
 INSERT INTO parents
 VALUES 
@@ -238,30 +239,12 @@ VALUES
 (9, 9, 8),
 (10, 6, 1);
 
-INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
-VALUES 
-(1006, 'Group 6', 'Grade 6', 9, null);
 
-INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
-VALUES 
-(1007, 'Group 7', 'Grade 7', 10, null);
 
-INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
-VALUES 
-(1008, 'Group 8', 'Grade 8', 11, null);
-
-INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
-VALUES 
-(1009, 'Group 9', 'Grade 9', 12, 6);
-
-INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
-VALUES 
-(1010, 'Group 10', 'Grade 10', null, 7);
-
-INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
-VALUES 
-(1011, 'Group 11', 'Grade 11', null, 8);
-
-INSERT INTO `groups` (`group_id`, `name`, `description`, `mentor_grade_req`, `mentee_grade_req`) 
-VALUES 
-(1012, 'Group 12', 'Grade 12', null, 9);
+INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 6', 6, 9, NULL);
+INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 7', 7, 10, NULL);
+INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 8', 8, 11, NULL);
+INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 9', 9, 12, 6);
+INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 10', 10, NULL, 7);
+INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 11', 11, NULL, 8);
+INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 12', 12, NULL, 9);
