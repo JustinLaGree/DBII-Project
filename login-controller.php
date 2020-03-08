@@ -13,8 +13,8 @@ define("DB_USER", "root");
 define("DB_PWD", "");
 define("DB_NAME", "DB2");
 
-//setup cookie constants
-define("SESSION_COOKIE_NAME", "SessionUserId");
+//setup session constants
+define("USER", "user");
 
 //check to see if the form was submitted by the login page
 if (isset($_POST['form_submitted'])){
@@ -48,7 +48,8 @@ if (isset($_POST['form_submitted'])){
             {
                 //set the session cookie for the user logged in
                 unset($row[PASSWORD]);
-                $_SESSION["user"] = $row;
+                $_SESSION = array();
+                $_SESSION[USER] = $row;
 
                 //redirect to the landing page
                 header("Location: landing.php");

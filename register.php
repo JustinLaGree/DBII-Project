@@ -16,7 +16,7 @@
         <br />
 
 <?php
-    if (isset($_GET['Student']) || isset($_POST['grade'])){
+    if (isset($_GET['Student']) || isset($_POST['parentemail'])){
         echo "Parent Email : <input type='text' name='parentemail' /><br/>";
         echo "Grade Level : <input type='text' name='grade' /><br/>";
     }

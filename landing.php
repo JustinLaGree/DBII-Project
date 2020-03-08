@@ -8,4 +8,5 @@ Welcome,
 ?>!
 
 <br/>
-<a href="edit-account-controller.html">account settings</a>
+<a href="logout.php">logout</a>
+<a href="edit-account-controller.php">account settings</a>
