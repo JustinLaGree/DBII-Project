@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 //setup regular constants
 define("ID", "id");
 define("EMAIL", "email");
@@ -45,8 +47,8 @@ if (isset($_POST['form_submitted'])){
                && strcmp(strtolower($password), strtolower($row[PASSWORD])) == 0) 
             {
                 //set the session cookie for the user logged in
-                $id = $row[ID];
-                setcookie(SESSION_COOKIE_NAME, $id, [$httponly=true]);
+                unset($row[PASSWORD]);
+                $_SESSION["user"] = $row;
 
                 //redirect to the landing page
                 header("Location: landing.php");
