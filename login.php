@@ -6,8 +6,6 @@
     <label for="password">Password:</label>
     <input type="password" placeholder="Enter Password" name="password"/><br/>
 
-    <input type="hidden" name="form_submitted" value="1" />
-
     <input type="submit" value="Login"/><br/><br/>
     
     <label <?php

@@ -17,7 +17,7 @@ define("DB_NAME", "DB2");
 define("USER", "user");
 
 //check to see if the form was submitted by the login page
-if (isset($_POST['form_submitted'])){
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     //construct a new my sql instance
     $mysqli = new mysqli(SERVER_NAME, DB_USER, DB_PWD, DB_NAME);

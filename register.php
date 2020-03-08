@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <form action="register.php" method="post">
+    <form action="register.php?Student" method="post">
 
         Full Name : <input type="text" name="fullname" />
         <br />
@@ -16,7 +16,7 @@
         <br />
 
 <?php
-    if (isset($_GET['Student']) || isset($_POST['parentemail'])){
+    if (isset($_GET['Student']) || isset($_POST['Student'])){
         echo "Parent Email : <input type='text' name='parentemail' /><br/>";
         echo "Grade Level : <input type='text' name='grade' /><br/>";
     }
@@ -100,8 +100,7 @@ if (isset($_POST['fullname']))
         {
             echo 'Inserted';
         }
-        }
+    }
+    header("Location: login.php");
 }
-
-
 ?>
