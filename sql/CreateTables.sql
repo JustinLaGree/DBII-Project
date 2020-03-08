@@ -248,3 +248,52 @@ INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_r
 INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 10', 10, NULL, 7);
 INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 11', 11, NULL, 8);
 INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 12', 12, NULL, 9);
+
+
+INSERT INTO time_slot
+VALUES
+(7, 'Friday', '7:30', '8:30');
+
+INSERT INTO meetings (meet_id, meet_name, date, time_slot_id, capacity, announcement, group_id)
+VALUES
+(1, 'Group 6 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 1),
+(2, 'Group 6 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 1),
+(3, 'Group 6 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 1),
+(4, 'Group 6 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 1),
+(5, 'Group 6 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 1),
+
+(6, 'Group 7 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 2),
+(7, 'Group 7 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 2),
+(8, 'Group 7 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 2),
+(9, 'Group 7 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 2),
+(10, 'Group 7 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 2),
+
+(11, 'Group 8 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 3),
+(12, 'Group 8 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 3),
+(13, 'Group 8 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 3),
+(14, 'Group 8 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 3),
+(15, 'Group 8 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 3),
+
+(16, 'Group 9 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 4),
+(17, 'Group 9 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 4),
+(18, 'Group 9 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 4),
+(19, 'Group 9 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 4),
+(20, 'Group 9 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 4),
+
+(21, 'Group 10 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 5),
+(22, 'Group 10 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 5),
+(23, 'Group 10 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 5),
+(24, 'Group 10 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 5),
+(25, 'Group 10 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 5),
+
+(26, 'Group 11 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 6),
+(27, 'Group 11 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 6),
+(28, 'Group 11 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 6),
+(29, 'Group 11 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 6),
+(30, 'Group 11 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 6),
+
+(31, 'Group 12 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 7),
+(32, 'Group 12 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 7),
+(33, 'Group 12 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 7),
+(34, 'Group 12 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 7),
+(35, 'Group 12 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 7);
