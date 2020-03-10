@@ -23,10 +23,10 @@ if (isset($_SESSION[USER])){
     //construct a new my sql instance
     $mysqli = new mysqli(SERVER_NAME, DB_USER, DB_PWD, DB_NAME);
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    //get the parent's ID
+    $id = $_GET[ID];
 
-        //get the parent's ID
-        $id = $_GET[ID];
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && $id == $_SESSION[USER][ID]) {
 
         //setup the sql query to see if user is an parent
         $sql = $mysqli->prepare('SELECT * FROM users WHERE id IN (SELECT parent_id from parents WHERE parent_id = ?)'); 

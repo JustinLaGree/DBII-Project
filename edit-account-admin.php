@@ -23,11 +23,11 @@ if (isset($_SESSION[USER])){
     //construct a new my sql instance
     $mysqli = new mysqli(SERVER_NAME, DB_USER, DB_PWD, DB_NAME);
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    //get the admin's ID
+    $id = $_GET[ID];
 
-        //get the admin's ID
-        $id = $_GET[ID];
-
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && $id === $_SESSION[USER][ID]) {
+=
         //setup the sql query to see if user is an admin
         $sql = $mysqli->prepare('SELECT * FROM users WHERE id IN (SELECT admin_id from admins WHERE admin_id = ?)'); 
         $sql->bind_param('s', $id);

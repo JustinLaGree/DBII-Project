@@ -1,3 +1,6 @@
+<?php 
+require("header.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +27,7 @@
 
         Password : <input type="password" name="password" />
         <br />
-        <input type="submit" value="Insert" />
+        <input type="submit" value="Register" />
 
     </form>
 
