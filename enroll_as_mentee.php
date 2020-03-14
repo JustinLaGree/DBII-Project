@@ -13,7 +13,7 @@
     $id = $_SESSION['user']['id'];
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
 
-    $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE mentee_grade_req <= (SELECT grade FROM students WHERE student_id = $id) OR mentee_grade_req IS NULL)  ";
+    $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE mentee_grade_req <= (SELECT grade FROM students WHERE student_id = $id) AND mentee_grade_req IS NOT NULL)  ";
     //select the meetings where the group_id is in the groups where the mentee_grade_req < the student grade level
     //echo $_SESSION["user"]["name"];
 

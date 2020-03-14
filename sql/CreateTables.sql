@@ -278,22 +278,4 @@ VALUES
 (17, 'Group 9 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 4),
 (18, 'Group 9 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 4),
 (19, 'Group 9 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 4),
-(20, 'Group 9 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 4),
-
-(21, 'Group 10 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 5),
-(22, 'Group 10 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 5),
-(23, 'Group 10 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 5),
-(24, 'Group 10 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 5),
-(25, 'Group 10 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 5),
-
-(26, 'Group 11 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 6),
-(27, 'Group 11 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 6),
-(28, 'Group 11 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 6),
-(29, 'Group 11 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 6),
-(30, 'Group 11 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 6),
-
-(31, 'Group 12 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 7),
-(32, 'Group 12 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 7),
-(33, 'Group 12 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 7),
-(34, 'Group 12 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 7),
-(35, 'Group 12 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 7);
+(20, 'Group 9 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 4)
