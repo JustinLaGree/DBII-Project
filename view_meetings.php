@@ -22,7 +22,7 @@ $result = $mysqli->query($sql);
 ?>
 
 
-<form method="post" action="enroll_as_mentee.php">
+<form method="post" action="view_meetings.php">
     <table name="available_meetings" border = 2>
     <thead id="td">
         <tr>
@@ -44,7 +44,7 @@ $result = $mysqli->query($sql);
         <?php echo $row[ 'date'];?>
     </td>
     <td>
-        <form method="post" action="enroll_as_mentee.php">
+        <form method="post" action="view_meetings.php">
             <input type="hidden" name="meet_id" value="<?php echo $row['meet_id'] ?>" />
             <input type="submit" name="submit" value="Remove Enrollment"/>
         </form>
@@ -65,7 +65,7 @@ if (isset($_POST['meet_id']))
 
     $meet_id = $_POST['meet_id'];
 
-    $sql = "INSERT INTO mentees VALUES ($id)";
+    $sql = "DELETE FROM mentees VALUES ($id)";
 
     //get the result of the select query
     if($mysqli->query($sql))
@@ -75,7 +75,7 @@ if (isset($_POST['meet_id']))
     
     
 
-    $sql = "INSERT INTO enroll VALUES ($meet_id, $id)";
+    $sql = "DELETE FROM enroll WHERE meet_id = $meet_id AND mentee_id = $id";
 
     //get the result of the select query
     if(!$mysqli->query($sql))
@@ -86,7 +86,7 @@ if (isset($_POST['meet_id']))
     }
     else
     {
-        echo 'Inserted';
+        echo 'Successfully removed enrollment';
     }
 }
 ?>
