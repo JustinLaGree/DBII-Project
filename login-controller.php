@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $_SESSION[USER] = $row;
 
                 //redirect to the landing page
-                header("Location: landing.php");
+                header("Location: index.php");
                 exit();
             } 
         }

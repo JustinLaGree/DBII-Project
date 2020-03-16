@@ -1,3 +1,7 @@
+<?php 
+require("header.php");
+?>
+
 <form method="post" action="login-controller.php">
 
     <label for="email">Email:</label>

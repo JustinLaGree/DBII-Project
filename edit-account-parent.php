@@ -2,6 +2,9 @@
 //start session for use in ids/names
 session_start();
 
+//build header
+require("header.php");
+
 //setup row constants
 define("ID", "id");
 define("NAME", "name");

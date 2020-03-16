@@ -1,12 +1,12 @@
-<h1>Currently Enrolled Meetings</h1>
-<br/>
-
 <?php 
     session_start();
+    
+    //build header
+    require("header.php");
 ?>
 
-
-
+<h1>Currently Enrolled Meetings</h1>
+<br/>
  
 
 <?php
