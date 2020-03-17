@@ -20,7 +20,7 @@ $result = $sql->get_result();
 ?>
 
     <table name="available_meetings" border=2>
-    <thead id="td">
+    <thead>
         <tr>
             <td>Meeting Name</td>
             <td>Date</td>
@@ -59,7 +59,7 @@ $countSql->execute();
 $countResult = $countSql->get_result();
 ?>
             <td><?php echo $countResult->fetch_assoc()["numMentors"] . " / 3"?></td>
-            <td><a <?php echo "href='view-meeting-admin?meeting=$meetId'" ?>>Select</a></td>
+            <td><a <?php echo "href='view-meeting-admin.php?meeting=$meetId'" ?>>Select</a></td>
         </tr>
     <?php
     }
