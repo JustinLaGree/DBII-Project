@@ -403,7 +403,7 @@ VALUES
 (16, 21),
 (16, 23);
 
-INSERT INTO enroll2 (`meet_id`, `mentor_id`)
+INSERT INTO enroll2 (meet_id, mentor_id)
 VALUES
 (1, 25),
 (1, 27),
@@ -416,7 +416,7 @@ VALUES
 (16, 41),
 (16, 43);
 
-INSERT INTO assign (`meet_id`, `material_id`)
+INSERT INTO assign (meet_id, material_id)
 VALUES
 (1, 1),
 (2, 2),
