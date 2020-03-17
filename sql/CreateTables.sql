@@ -204,8 +204,6 @@ CREATE TABLE `assign` (
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-
-
 INSERT INTO users 
 VALUES 
 (1, 'HopeJohnson@gmail.com', 'chalkboard', 'Hope Johnson', '808-777-2222'),
@@ -218,7 +216,39 @@ VALUES
 (8, 'SarahWelton@gmail.com', 'tilefloor', 'Sarah Welton', '800-800-8111'),
 (9, 'MileyWelton@gmail.com', 'waterbottle', 'Miley Welton', '800-800-8222'),
 (10, 'DannyJohnson@gmail.com', 'whiteboard', 'Danny Johnson', '808-800-9999'),
-(11, 'admin@gmail.com', 'password', 'Admin', null);
+(11, 'admin@gmail.com', 'password', 'Admin', null),
+(12, 'ParentGeorge@gmail.com', 'password', 'Parent George', null),
+(13, 'StudentGeorge@gmail.com', 'password', 'Student George', null),
+(14, 'ParentWest@gmail.com', 'password', 'Parent West', null),
+(15, 'StudentWest@gmail.com', 'password', 'Student West', null),
+(16, 'ParentWhite@gmail.com', 'password', 'Parent White', null),
+(17, 'StudentWhite@gmail.com', 'password', 'Student White', null),
+(18, 'ParentWilliams@gmail.com', 'password', 'Parent Williams', null),
+(19, 'StudentWilliams@gmail.com', 'password', 'Student Williams', null),
+(20, 'ParentBrown@gmail.com', 'password', 'Parent Brown', null),
+(21, 'StudentBrown@gmail.com', 'password', 'Student Brown', null),
+(22, 'ParentJones@gmail.com', 'password', 'Parent Jones', null),
+(23, 'StudentJones@gmail.com', 'password', 'Student Jones', null),
+(24, 'ParentDavis@gmail.com', 'password', 'Parent Davis', null),
+(25, 'StudentDavis@gmail.com', 'password', 'Student Davis', null),
+(26, 'ParentMiller@gmail.com', 'password', 'Parent Miller', null),
+(27, 'StudentMiller@gmail.com', 'password', 'Student Miller', null),
+(28, 'ParentWilson@gmail.com', 'password', 'Parent Wilson', null),
+(29, 'StudentWilson@gmail.com', 'password', 'Student Wilson', null),
+(30, 'ParentMoore@gmail.com', 'password', 'Parent Moore', null),
+(31, 'StudentMoore@gmail.com', 'password', 'Student Moore', null),
+(32, 'ParentTaylor@gmail.com', 'password', 'Parent Taylor', null),
+(33, 'StudentTaylor@gmail.com', 'password', 'Student Taylor', null),
+(34, 'ParentAnderson@gmail.com', 'password', 'Parent Anderson', null),
+(35, 'StudentAnderson@gmail.com', 'password', 'Student Anderson', null),
+(36, 'ParentThomas@gmail.com', 'password', 'Parent Thomas', null),
+(37, 'StudentThomas@gmail.com', 'password', 'Student Thomas', null),
+(38, 'ParentJackson@gmail.com', 'password', 'Parent Jackson', null),
+(39, 'StudentJackson@gmail.com', 'password', 'Student Jackson', null),
+(40, 'ParentHarris@gmail.com', 'password', 'Parent Harris', null),
+(41, 'StudentHarris@gmail.com', 'password', 'Student Harris', null),
+(42, 'ParentMartin@gmail.com', 'password', 'Parent Martin', null),
+(43, 'StudentMartin@gmail.com', 'password', 'Student Martin', null);
 
 INSERT INTO admins 
 VALUES 
@@ -229,17 +259,47 @@ VALUES
 (1), 
 (2), 
 (4), 
-(8);
+(8),
+(12),
+(14),
+(16),
+(18),
+(20),
+(22),
+(24),
+(26),
+(28),
+(30),
+(32),
+(34),
+(36),
+(38),
+(40),
+(42);
 
 INSERT INTO students
 VALUES 
-(3, 7, 2),
-(5, 9, 4),
-(7, 11, 2),
-(9, 9, 8),
-(10, 6, 1);
-
-
+(3, 6, 2),
+(5, 6, 4),
+(7, 6, 2),
+(9, 7, 8),
+(10, 7, 1),
+(13, 7, 12),
+(15, 8, 14),
+(17, 8, 16),
+(19, 8, 18),
+(21, 9, 20),
+(23, 9, 22),
+(25, 9, 24),
+(27, 9, 26),
+(29, 10, 28),
+(31, 10, 30),
+(33, 11, 32),
+(35, 11, 34),
+(37, 11, 36),
+(39, 12, 38),
+(41, 12, 40),
+(43, 12, 42);
 
 INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 6', 6, 9, NULL);
 INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_req`) VALUES ('Group 7', 7, 10, NULL);
@@ -252,30 +312,118 @@ INSERT INTO `groups` (`name`, `description`, `mentor_grade_req`, `mentee_grade_r
 
 INSERT INTO time_slot
 VALUES
-(7, 'Friday', '7:30', '8:30');
+(1, 'Saturday', '5:00', '6:00'),
+(2, 'Saturday', '6:00', '7:00'),
+(3, 'Saturday', '7:00', '8:00'),
+(4, 'Saturday', '8:00', '9:00'),
+(5, 'Saturday', '9:00', '10:00'),
+(6, 'Sunday', '5:00', '6:00'),
+(7, 'Sunday', '6:00', '7:00'),
+(8, 'Sunday', '7:00', '8:00'),
+(9, 'Sunday', '8:00', '9:00'),
+(10, 'Sunday', '9:00', '10:00');
 
 INSERT INTO meetings (meet_id, meet_name, date, time_slot_id, capacity, announcement, group_id)
 VALUES
-(1, 'Group 6 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 1),
-(2, 'Group 6 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 1),
-(3, 'Group 6 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 1),
-(4, 'Group 6 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 1),
-(5, 'Group 6 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 1),
+(1, 'Group 6 Week 1', '2020-08-01', 1, 9, 'Test Announcement', 1),
+(2, 'Group 6 Week 2', '2020-08-08', 1, 9, 'Test Announcement', 1),
+(3, 'Group 6 Week 3', '2020-08-15', 1, 9, 'Test Announcement', 1),
+(4, 'Group 6 Week 4', '2020-08-22', 1, 9, 'Test Announcement', 1),
+(5, 'Group 6 Week 5', '2020-08-29', 1, 9, 'Test Announcement', 1),
 
-(6, 'Group 7 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 2),
-(7, 'Group 7 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 2),
-(8, 'Group 7 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 2),
-(9, 'Group 7 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 2),
-(10, 'Group 7 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 2),
+(6, 'Group 7 Week 1', '2020-08-01', 1, 9, 'Test Announcement', 2),
+(7, 'Group 7 Week 2', '2020-08-08', 1, 9, 'Test Announcement', 2),
+(8, 'Group 7 Week 3', '2020-08-15', 1, 9, 'Test Announcement', 2),
+(9, 'Group 7 Week 4', '2020-08-22', 1, 9, 'Test Announcement', 2),
+(10, 'Group 7 Week 5', '2020-08-29', 1, 9, 'Test Announcement', 2),
 
-(11, 'Group 8 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 3),
-(12, 'Group 8 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 3),
-(13, 'Group 8 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 3),
-(14, 'Group 8 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 3),
-(15, 'Group 8 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 3),
+(11, 'Group 8 Week 1', '2020-08-01', 5, 9, 'Test Announcement', 3),
+(12, 'Group 8 Week 2', '2020-08-08', 5, 9, 'Test Announcement', 3),
+(13, 'Group 8 Week 3', '2020-08-15', 5, 9, 'Test Announcement', 3),
+(14, 'Group 8 Week 4', '2020-08-22', 5, 9, 'Test Announcement', 3),
+(15, 'Group 8 Week 5', '2020-08-29', 5, 9, 'Test Announcement', 3),
 
-(16, 'Group 9 Week 1', '2020-08-01', 7, 10, 'Test Announcement', 4),
-(17, 'Group 9 Week 2', '2020-08-08', 7, 10, 'Test Announcement', 4),
-(18, 'Group 9 Week 3', '2020-08-15', 7, 10, 'Test Announcement', 4),
-(19, 'Group 9 Week 4', '2020-08-22', 7, 10, 'Test Announcement', 4),
-(20, 'Group 9 Week 5', '2020-08-29', 7, 10, 'Test Announcement', 4)
+(16, 'Group 9 Week 1', '2020-08-01', 5, 9, 'Test Announcement', 4),
+(17, 'Group 9 Week 2', '2020-08-08', 5, 9, 'Test Announcement', 4),
+(18, 'Group 9 Week 3', '2020-08-15', 5, 9, 'Test Announcement', 4),
+(19, 'Group 9 Week 4', '2020-08-22', 5, 9, 'Test Announcement', 4),
+(20, 'Group 9 Week 5', '2020-08-29', 5, 9, 'Test Announcement', 4)
+
+INSERT INTO materials ('material_id', `title`, `author`, `type`, `url`, `assigned_date`, `notes`)
+VALUES
+(1, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
+(2, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
+(3, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
+(4, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
+(5, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
+(6, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
+(7, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
+(8, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
+(9, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none');
+
+INSERT INTO mentees ('mentee_id')
+VALUES
+(3),
+(5),
+(7),
+(9),
+(10),
+(13),
+(15),
+(17),
+(19),
+(21),
+(23);
+
+INSERT INTO mentors ('mentor_id')
+VALUES
+(25),
+(27),
+(29),
+(31),
+(33),
+(35),
+(37),
+(39),
+(41),
+(43);
+
+INSERT INTO enroll (`meet_id`, `mentee_id`)
+VALUES
+(1, 3),
+(1, 5),
+(1, 7),
+(6, 9),
+(6, 10),
+(6, 13),
+(11, 15),
+(11, 17),
+(11, 19),
+(16, 21),
+(16, 23);
+
+INSERT INTO enroll2 (`meet_id`, `mentor_id`)
+VALUES
+(1, 25),
+(1, 27),
+(6, 29),
+(6, 31),
+(11, 33),
+(11, 35),
+(11, 37),
+(16, 39),
+(16, 41),
+(16, 43);
+
+INSERT INTO assign (`meet_id`, `material_id`)
+VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10);

@@ -76,10 +76,10 @@ if (isset($_POST['fullname']))
     {
         $sql_insert_student = "INSERT INTO students (student_id, grade, parent_id)
                                 SELECT $insertId, $grade, id
-                                FROM users
-                                WHERE email = '$parentEmail'";
-
-
+                                FROM parents 
+                                WHERE parent_id IN (SELECT id 
+                                    FROM users 
+                                    WHERE email = '$parentEmail')";
 
         if(!mysqli_query($mysqli, $sql_insert_student))
         {
