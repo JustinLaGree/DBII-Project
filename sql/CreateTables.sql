@@ -347,9 +347,9 @@ VALUES
 (17, 'Group 9 Week 2', '2020-08-08', 5, 9, 'Test Announcement', 4),
 (18, 'Group 9 Week 3', '2020-08-15', 5, 9, 'Test Announcement', 4),
 (19, 'Group 9 Week 4', '2020-08-22', 5, 9, 'Test Announcement', 4),
-(20, 'Group 9 Week 5', '2020-08-29', 5, 9, 'Test Announcement', 4)
+(20, 'Group 9 Week 5', '2020-08-29', 5, 9, 'Test Announcement', 4);
 
-INSERT INTO materials ('material_id', `title`, `author`, `type`, `url`, `assigned_date`, `notes`)
+INSERT INTO material (material_id, title, author, type, url, assigned_date, notes)
 VALUES
 (1, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
 (2, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
@@ -359,9 +359,10 @@ VALUES
 (6, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
 (7, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
 (8, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
-(9, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none');
+(9, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none'),
+(10, 'Coronavirus: US volunteers to test first vaccine', 'Michelle Roberts', 'article', 'https://www.bbc.com/news/health-51906604', '2020-08-01', 'none');
 
-INSERT INTO mentees ('mentee_id')
+INSERT INTO mentees (mentee_id)
 VALUES
 (3),
 (5),
@@ -375,7 +376,7 @@ VALUES
 (21),
 (23);
 
-INSERT INTO mentors ('mentor_id')
+INSERT INTO mentors (mentor_id)
 VALUES
 (25),
 (27),
@@ -388,7 +389,7 @@ VALUES
 (41),
 (43);
 
-INSERT INTO enroll (`meet_id`, `mentee_id`)
+INSERT INTO enroll (meet_id, mentee_id)
 VALUES
 (1, 3),
 (1, 5),
