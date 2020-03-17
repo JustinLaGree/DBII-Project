@@ -18,9 +18,6 @@ define("DB_USER", "root");
 define("DB_PWD", "");
 define("DB_NAME", "DB2");
 
-//setup session constants
-define("USER", "user");
-
 if (isset($_SESSION[USER])){
 
     //construct a new my sql instance

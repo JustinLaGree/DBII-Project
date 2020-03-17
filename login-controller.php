@@ -15,6 +15,12 @@ define("DB_NAME", "DB2");
 
 //setup session constants
 define("USER", "user");
+define('USERTYPE', 'UserType');
+
+//setup user enum constants
+define("ADMIN", 1);
+define("STUDENT", 2);
+define("PARENT", 3);
 
 //check to see if the form was submitted by the login page
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -46,10 +52,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             if (strcmp(strtolower($email), strtolower($row[EMAIL])) == 0
                && strcmp(strtolower($password), strtolower($row[PASSWORD])) == 0) 
             {
+                $userType = 0;
+
+                //get if the user is admin
+                $sql = $mysqli->prepare('SELECT admin_id FROM admins WHERE admin_id IN (SELECT id FROM users WHERE email = ?)'); 
+                $sql->bind_param('s', $row[EMAIL]);
+
+                $sql->execute();
+
+                if ($sql->get_result()->num_rows == 1){
+                    $userType = ADMIN;
+                }
+                else{
+                    $sql = $mysqli->prepare('SELECT student_id FROM students WHERE student_id IN (SELECT id FROM users WHERE email = ?)'); 
+                    $sql->bind_param('s', $row[EMAIL]);
+
+                    $sql->execute();
+
+                    if ($sql->get_result()->num_rows == 1){
+                        $userType = STUDENT;
+                    }
+                    else{
+                        $userType = PARENT;
+                    }
+                }
+
                 //set the session cookie for the user logged in
                 unset($row[PASSWORD]);
                 $_SESSION = array();
                 $_SESSION[USER] = $row;
+                $_SESSION[USER][USERTYPE] = $userType;
 
                 //redirect to the landing page
                 header("Location: index.php");
