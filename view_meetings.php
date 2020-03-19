@@ -80,13 +80,21 @@ if (isset($_POST['meet_id']))
     //get the result of the select query
     if(!$mysqli->query($sql))
     {
-        echo 'Not Inserted - enroll';
+        echo 'Not Deleted - enroll';
         echo mysqli_error($mysqli);
         
     }
-    else
+
+    $sql = "DELETE FROM enroll2 WHERE meet_id = $meet_id AND mentor_id = $id";
+
+    //get the result of the select query
+    if(!$mysqli->query($sql))
     {
-        echo 'Successfully removed enrollment';
+        echo 'Not Deleted - enroll2';
+        echo mysqli_error($mysqli);
+        
     }
+
+    header("Refresh:0");
 }
 ?>

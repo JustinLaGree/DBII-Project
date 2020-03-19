@@ -12,10 +12,10 @@
     $id = $_SESSION['user']['id'];
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
 
-    $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE mentee_grade_req <= (SELECT grade FROM students WHERE student_id = $id) AND mentee_grade_req IS NOT NULL)  ";
+    $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE description = (SELECT grade FROM students WHERE student_id = $id))";
     //select the meetings where the group_id is in the groups where the mentee_grade_req < the student grade level
     //echo $_SESSION["user"]["name"];
-
+    
 $result = $mysqli->query($sql);
 ?>
 
@@ -24,9 +24,11 @@ $result = $mysqli->query($sql);
     <table name="available_meetings" border = 2>
     <thead id="td">
         <tr>
+            <td>Group ID</td>
             <td>Meeting Name</td>
             <td>Date</td>
-            <td>Choose</td>
+            <td>Current Mentee Enrollment</td>
+            <td>Enroll</td>
         </tr>
     <thead>
     <tbody>
@@ -35,12 +37,28 @@ $result = $mysqli->query($sql);
             while($row = $result->fetch_assoc()){?>
             <tr>
     <td>
+        <?php echo $row[ 'group_id']?>
+
+    </td>
+    <td>
         <?php echo $row[ 'meet_name']?>
 
     </td>
     <td>
         <?php echo $row[ 'date'];?>
     </td>
+    <td>
+        <?php
+            $mentee_cap_sql = "SELECT COUNT(mentee_id) as c1 FROM enroll WHERE meet_id = $row[meet_id]";
+            $result2 = $mysqli->query($mentee_cap_sql);
+            echo $mysqli->error;
+            while($row2 = $result2->fetch_assoc()){
+            echo $row2[ 'c1'];
+            echo '/6';
+            }
+        ?>
+    </td>
+    
     <td>
         <form method="post" action="enroll_as_mentee.php">
             <input type="hidden" name="meet_id" value="<?php echo $row['meet_id'] ?>" />
@@ -66,9 +84,15 @@ if (isset($_POST['meet_id']))
     $sql = "INSERT INTO mentees VALUES ($id)";
 
     //get the result of the select query
-    if($mysqli->query($sql))
+    if(!$mysqli->query($sql))
     {
-        echo 'Inserted';
+        echo 'Not Inserted - Mentee<br>';
+        echo mysqli_error($mysqli);
+        echo '<br>';
+    }
+    else
+    {
+        echo 'Inserted - Mentee<br>';
     }
     
     
@@ -78,14 +102,15 @@ if (isset($_POST['meet_id']))
     //get the result of the select query
     if(!$mysqli->query($sql))
     {
-        echo 'Not Inserted - enroll';
+        echo 'Not Inserted - enroll<br>';
         echo mysqli_error($mysqli);
         
     }
     else
     {
-        echo 'Inserted';
+        echo 'Inserted - enroll<br>';
     }
+    header("Refresh:0");
 }
 ?>
  

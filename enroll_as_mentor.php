@@ -24,9 +24,11 @@ $result = $mysqli->query($sql);
     <table name="available_meetings" border = 2>
     <thead id="td">
         <tr>
+            <td>Group ID</td>
             <td>Meeting Name</td>
             <td>Date</td>
-            <td>Choose</td>
+            <td>Current Mentor Enrollment</td>
+            <td>Enroll</td>
         </tr>
     <thead>
     <tbody>
@@ -35,11 +37,26 @@ $result = $mysqli->query($sql);
             while($row = $result->fetch_assoc()){?>
             <tr>
     <td>
+        <?php echo $row[ 'group_id']?>
+
+    </td>
+    <td>
         <?php echo $row[ 'meet_name']?>
 
     </td>
     <td>
         <?php echo $row[ 'date'];?>
+    </td>
+    <td>
+        <?php
+            $mentor_cap_sql = "SELECT COUNT(mentor_id) as c1 FROM enroll2 WHERE meet_id = $row[meet_id]";
+            $result2 = $mysqli->query($mentor_cap_sql);
+            echo $mysqli->error;
+            while($row2 = $result2->fetch_assoc()){
+            echo $row2[ 'c1'];
+            echo '/3';
+            }
+        ?>
     </td>
     <td>
         <form method="post" action="enroll_as_mentor.php">
@@ -66,9 +83,15 @@ if (isset($_POST['meet_id']))
     $sql = "INSERT INTO mentors VALUES ($id)";
 
     //get the result of the select query
-    if($mysqli->query($sql))
+    if(!$mysqli->query($sql))
     {
-        echo 'Inserted';
+        echo 'Not Inserted - Mentor<br>';
+        echo mysqli_error($mysqli);
+        echo '<br>';
+    }
+    else
+    {
+        echo 'Inserted - Mentor<br>';
     }
     
     
@@ -78,14 +101,15 @@ if (isset($_POST['meet_id']))
     //get the result of the select query
     if(!$mysqli->query($sql))
     {
-        echo 'Not Inserted - enroll';
+        echo 'Not Inserted - enroll2<br>';
         echo mysqli_error($mysqli);
         
     }
     else
     {
-        echo 'Inserted';
+        echo 'Inserted - enroll2<br>';
     }
+    header("Refresh:0");
 }
 ?>
  
