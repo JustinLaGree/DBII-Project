@@ -11,21 +11,21 @@ require("header.php");
 
     <form action="register.php?Student" method="post">
 
-        Full Name : <input type="text" name="fullname" />
+        Full Name : <input type="text" name="fullname" required/>
         <br />
-        Phone Number : <input type="text" name="phone" />
+        Phone Number : <input type="text" name="phone" required/>
         <br />
-        Email : <input type="text" name="email" />
+        Email : <input type="text" name="email" required/>
         <br />
 
 <?php
     if (isset($_GET['Student']) || isset($_POST['Student'])){
-        echo "Parent Email : <input type='text' name='parentemail' /><br/>";
-        echo "Grade Level : <input type='text' name='grade' /><br/>";
+        echo "Parent Email : <input type='text' name='parentemail' required/><br/>";
+        echo "Grade Level : <input type='text' name='grade' required/><br/>";
     }
 ?>
 
-        Password : <input type="password" name="password" />
+        Password : <input type="password" name="password" required/>
         <br />
         <input type="submit" value="Register" />
 

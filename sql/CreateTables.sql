@@ -216,7 +216,7 @@ VALUES
 (8, 'SarahWelton@gmail.com', 'tilefloor', 'Sarah Welton', '800-800-8111'),
 (9, 'MileyWelton@gmail.com', 'waterbottle', 'Miley Welton', '800-800-8222'),
 (10, 'DannyJohnson@gmail.com', 'whiteboard', 'Danny Johnson', '808-800-9999'),
-(11, 'admin@gmail.com', 'password', 'Admin', null),
+(11, 'admin@admin', 'password', 'Admin', null),
 (12, 'ParentGeorge@gmail.com', 'password', 'Parent George', null),
 (13, 'StudentGeorge@gmail.com', 'password', 'Student George', null),
 (14, 'ParentWest@gmail.com', 'password', 'Parent West', null),
@@ -325,29 +325,29 @@ VALUES
 
 INSERT INTO meetings (meet_id, meet_name, date, time_slot_id, capacity, announcement, group_id)
 VALUES
-(1, 'Group 6 Week 1', '2020-08-01', 1, 9, 'Test Announcement', 1),
-(2, 'Group 6 Week 2', '2020-08-08', 1, 9, 'Test Announcement', 1),
-(3, 'Group 6 Week 3', '2020-08-15', 1, 9, 'Test Announcement', 1),
-(4, 'Group 6 Week 4', '2020-08-22', 1, 9, 'Test Announcement', 1),
-(5, 'Group 6 Week 5', '2020-08-29', 1, 9, 'Test Announcement', 1),
+(1, 'Math', '2020-08-01', 1, 9, 'Test Announcement', 1),
+(2, 'English', '2020-08-01', 1, 9, 'Test Announcement', 1),
+(3, 'Science', '2020-08-18', 1, 9, 'Test Announcement', 1),
+(4, 'Math', '2020-08-01', 3, 9, 'Test Announcement', 1),
+(5, 'English', '2020-08-01', 4, 9, 'Test Announcement', 1),
 
-(6, 'Group 7 Week 1', '2020-08-01', 1, 9, 'Test Announcement', 2),
-(7, 'Group 7 Week 2', '2020-08-08', 1, 9, 'Test Announcement', 2),
-(8, 'Group 7 Week 3', '2020-08-15', 1, 9, 'Test Announcement', 2),
-(9, 'Group 7 Week 4', '2020-08-22', 1, 9, 'Test Announcement', 2),
-(10, 'Group 7 Week 5', '2020-08-29', 1, 9, 'Test Announcement', 2),
+(6, 'Math', '2020-08-01', 1, 9, 'Test Announcement', 2),
+(7, 'Math', '2020-08-08', 1, 9, 'Test Announcement', 2),
+(8, 'Math', '2020-08-15', 1, 9, 'Test Announcement', 2),
+(9, 'English', '2020-08-22', 1, 9, 'Test Announcement', 2),
+(10, 'English', '2020-08-29', 1, 9, 'Test Announcement', 2),
 
-(11, 'Group 8 Week 1', '2020-08-01', 5, 9, 'Test Announcement', 3),
-(12, 'Group 8 Week 2', '2020-08-08', 5, 9, 'Test Announcement', 3),
-(13, 'Group 8 Week 3', '2020-08-15', 5, 9, 'Test Announcement', 3),
-(14, 'Group 8 Week 4', '2020-08-22', 5, 9, 'Test Announcement', 3),
-(15, 'Group 8 Week 5', '2020-08-29', 5, 9, 'Test Announcement', 3),
+(11, 'Math', '2020-08-01', 5, 9, 'Test Announcement', 3),
+(12, 'English', '2020-08-08', 5, 9, 'Test Announcement', 3),
+(13, 'English', '2020-08-15', 5, 9, 'Test Announcement', 3),
+(14, 'English', '2020-08-22', 5, 9, 'Test Announcement', 3),
+(15, 'Science', '2020-08-29', 5, 9, 'Test Announcement', 3),
 
-(16, 'Group 9 Week 1', '2020-08-01', 5, 9, 'Test Announcement', 4),
-(17, 'Group 9 Week 2', '2020-08-08', 5, 9, 'Test Announcement', 4),
-(18, 'Group 9 Week 3', '2020-08-15', 5, 9, 'Test Announcement', 4),
-(19, 'Group 9 Week 4', '2020-08-22', 5, 9, 'Test Announcement', 4),
-(20, 'Group 9 Week 5', '2020-08-29', 5, 9, 'Test Announcement', 4);
+(16, 'Math', '2020-08-01', 5, 9, 'Test Announcement', 4),
+(17, 'Math', '2020-08-08', 5, 9, 'Test Announcement', 4),
+(18, 'English', '2020-08-15', 5, 9, 'Test Announcement', 4),
+(19, 'Science', '2020-08-22', 5, 9, 'Test Announcement', 4),
+(20, 'Science', '2020-08-29', 5, 9, 'Test Announcement', 4);
 
 INSERT INTO material (material_id, title, author, type, url, assigned_date, notes)
 VALUES
