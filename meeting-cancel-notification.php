@@ -49,7 +49,7 @@ while ($row = $result->fetch_assoc()){
             $result = $sql->get_result();
 
             while ($user = $result->fetch_assoc()){
-                fwrite($myfile, $user["email"] . "\n");
+                fwrite($myfile, $user["name"] . "   :   " . $user["email"] . "\n");
             }
         }
         fclose($myfile);
