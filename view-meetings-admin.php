@@ -22,8 +22,8 @@ $result = $sql->get_result();
     <table name="available_meetings" border=2>
     <thead>
         <tr>
-            <td>Meeting Name</td>
             <td>Date</td>
+            <td>Meeting Name</td>
             <td>Number of Mentees</td>
             <td>Number of Mentors</td>
             <td>Select</td>
@@ -36,8 +36,8 @@ $result = $sql->get_result();
                 $meetId = $row['meet_id'];
         ?>
         <tr>
-            <td><?php echo $row['meet_name']?></td>
             <td><?php echo $row['date'];?></td>
+            <td><?php echo $row['meet_name']?></td>
 <?php
 //prepare a new query where we get the use with specified email
 $countSql = $mysqli->prepare('SELECT COUNT(mentee_id) as numMentees FROM enroll WHERE meet_id = ?'); 

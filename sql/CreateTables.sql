@@ -347,7 +347,9 @@ VALUES
 (17, 'Math', '2020-08-08', 5, 9, 'Test Announcement', 4),
 (18, 'English', '2020-08-15', 5, 9, 'Test Announcement', 4),
 (19, 'Science', '2020-08-22', 5, 9, 'Test Announcement', 4),
-(20, 'Science', '2020-08-29', 5, 9, 'Test Announcement', 4);
+(20, 'Science', '2020-08-29', 5, 9, 'Test Announcement', 4),
+
+(21, 'Science', '2020-03-22', 5, 9, 'Test Announcement', 4);
 
 INSERT INTO material (material_id, title, author, type, url, assigned_date, notes)
 VALUES

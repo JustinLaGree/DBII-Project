@@ -9,6 +9,9 @@ img/
 xampp/
 webalizer/
 
+#output files
+meeting-cancellations/
+
 #mac garbage
 .DS_store
 ._*.*

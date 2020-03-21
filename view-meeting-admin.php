@@ -119,7 +119,7 @@ $unregistered = [];
 //iterate over the list of all unenrolled mentees
 while($row = $result->fetch_assoc()){
     //get info for the target meeting we are looking to enroll in
-    $currentDate = new DateTime($meeting["date"]);
+    $currentDate = strtotime($meeting["date"]);
     $currentName = $meeting["meet_name"];
 
     $userId = intval($row["id"]);
@@ -134,9 +134,9 @@ while($row = $result->fetch_assoc()){
     $inserted = false;
     //iterate over all the meeting time info
     while ($meetingtimeRow = $enrollResult->fetch_assoc()){
-        $targetDate = new DateTime($meetingtimeRow["date"]);
+        $targetDate = strtotime($meetingtimeRow["date"]);
 
-        $dateDif = abs(($currentDate->diff($targetDate))->d);
+        $dateDif = abs(round(($targetDate - $currentDate) / (60 * 60 * 24)));
         
         //check to see if there is a conflict
         //mentors cannot register for two classes if they are on the same data/time or if they are on the same weekend and same subject/name
@@ -246,7 +246,7 @@ $unregistered = [];
 //iterate over the list of all unenrolled mentees
 while($row = $result->fetch_assoc()){
     //get the date of the current meeting we are trying to register for
-    $currentDate = new DateTime($meeting["date"]);
+    $currentDate = strtotime($meeting["date"]);
 
     $userId = intval($row["id"]);
 
@@ -261,9 +261,9 @@ while($row = $result->fetch_assoc()){
 
     //iterate over all of the time slot info for the given user
     while ($timeRow = $enrollResult->fetch_assoc()){
-        $targetDate = new DateTime($timeRow["date"]);
+        $targetDate = strtotime($timeRow["date"]);
 
-        $dateDif = abs(($currentDate->diff($targetDate))->d);
+        $dateDif = abs(round(($targetDate - $currentDate) / (60 * 60 * 24)));
         //if the user has a conflict:
         //mentors cannot register for more than one class in a given weekend
         if ($dateDif < 2){
