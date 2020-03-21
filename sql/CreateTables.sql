@@ -328,7 +328,7 @@ VALUES
 (1, 'Math', '2020-08-01', 1, 9, 'Test Announcement', 1),
 (2, 'English', '2020-08-01', 1, 9, 'Test Announcement', 1),
 (3, 'Science', '2020-08-18', 1, 9, 'Test Announcement', 1),
-(4, 'Math', '2020-08-01', 3, 9, 'Test Announcement', 1),
+(4, 'Math', '2020-08-02', 3, 9, 'Test Announcement', 1),
 (5, 'English', '2020-08-01', 4, 9, 'Test Announcement', 1),
 
 (6, 'Math', '2020-08-01', 1, 9, 'Test Announcement', 2),
