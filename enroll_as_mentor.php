@@ -12,7 +12,8 @@
     $id = $_SESSION['user']['id'];
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
 
-    $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE mentor_grade_req <= (SELECT grade FROM students WHERE student_id = $id))";
+    $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE mentor_grade_req <= (SELECT grade FROM students WHERE student_id = $id))
+                AND date NOT IN (SELECT date from meetings WHERE meet_id in (SELECT meet_id FROM enroll2 where mentor_id = $id))";
     //select the meetings where the group_id is in the groups where the mentee_grade_req < the student grade level
     //echo $_SESSION["user"]["name"];
 
@@ -76,6 +77,7 @@ $result = $mysqli->query($sql);
 
 if (isset($_POST['meet_id']))
 {
+
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
 
     $meet_id = $_POST['meet_id'];
@@ -109,7 +111,6 @@ if (isset($_POST['meet_id']))
     {
         echo 'Inserted - enroll2<br>';
     }
-    header("Refresh:0");
+    header("Location: enroll_as_mentor.php");
 }
 ?>
- 

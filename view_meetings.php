@@ -49,6 +49,13 @@ $result = $mysqli->query($sql);
             <input type="submit" name="submit" value="Remove Enrollment"/>
         </form>
     </td>
+    <td>
+        <form method="post" action="view_meetings.php">
+            <input type="hidden" name="view_members_id" value="<?php echo $row['meet_id'] ?>" />
+            <input type="submit" name="submit" value="View Members"/>
+        </form>
+    </td>
+    
     
 </tr>
     <?php
@@ -96,5 +103,12 @@ if (isset($_POST['meet_id']))
     }
 
     header("Refresh:0");
+}
+
+if (isset($_POST['view_members_id']))
+{
+    $_SESSION['meet_id'] = $_POST['view_members_id'];
+    echo $_SESSION['meet_id'];
+    header('Location: view_members.php');
 }
 ?>

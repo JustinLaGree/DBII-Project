@@ -29,6 +29,7 @@ $result = $mysqli->query($sql);
             <td>Date</td>
             <td>Current Mentee Enrollment</td>
             <td>Enroll</td>
+            <td>Bulk Enroll</td>
         </tr>
     <thead>
     <tbody>
@@ -63,6 +64,15 @@ $result = $mysqli->query($sql);
         <form method="post" action="enroll_as_mentee.php">
             <input type="hidden" name="meet_id" value="<?php echo $row['meet_id'] ?>" />
             <input type="submit" name="submit" value="Enroll as Mentee"/>
+        </form>
+    </td>
+
+    <td>
+        <form method="post" action="enroll_as_mentee.php">
+            <input type="hidden" name="all_meet_id" value="<?php echo $row['meet_id'] ?>" />
+            <input type="hidden" name="all_group_id" value="<?php echo $row['group_id'] ?>" />
+            <input type="hidden" name="all_meet_name" value="<?php echo $row['meet_name'] ?>" />
+            <input type="submit" name="submit" value="Enroll in All Recurring Meetings"/>
         </form>
     </td>
     
@@ -109,6 +119,49 @@ if (isset($_POST['meet_id']))
     else
     {
         echo 'Inserted - enroll<br>';
+    }
+    header("Refresh:0");
+}
+?>
+
+<?php
+
+if (isset($_POST['all_meet_id']))
+{
+    $mysqli = new mysqli('localhost', 'root', '', 'DB2');
+
+    $meet_id = $_POST['all_meet_id'];
+    $group_id = $_POST['all_group_id'];
+    $meet_name = $_POST['all_meet_name'];
+
+    $sql = "INSERT INTO mentees VALUES ($id)";
+
+    //get the result of the select query
+    if(!$mysqli->query($sql))
+    {
+        echo 'Not Inserted - Mentee<br>';
+        echo mysqli_error($mysqli);
+        echo '<br>';
+    }
+    else
+    {
+        echo 'Inserted - Mentee<br>';
+    }
+    
+    echo $meet_name;
+
+    $sql = "INSERT INTO enroll(meet_id, mentee_id) SELECT meet_id, $id FROM meetings WHERE group_id = $group_id AND meet_name = '$meet_name'";
+
+    //get the result of the select query
+    if(!$mysqli->query($sql))
+    {
+        echo 'Not Inserted - BULK enroll<br>';
+        echo mysqli_error($mysqli);
+        
+    }
+    else
+    {
+        echo 'Inserted - BULK enroll<br>';
     }
     header("Refresh:0");
 }
