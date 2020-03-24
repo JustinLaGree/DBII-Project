@@ -86,16 +86,8 @@ if (isset($_POST['meet_id']))
     $sql = "INSERT INTO mentors VALUES ($id)";
 
     //get the result of the select query
-    if(!$mysqli->query($sql))
-    {
-        echo 'Not Inserted - Mentor<br>';
-        echo mysqli_error($mysqli);
-        echo '<br>';
-    }
-    else
-    {
-        echo 'Inserted - Mentor<br>';
-    }
+    $mysqli->query($sql);
+    
     
     
 
@@ -112,6 +104,6 @@ if (isset($_POST['meet_id']))
     {
         echo 'Inserted - enroll2<br>';
     }
-    header("Location: enroll_as_mentor.php");
+  
 }
 ?>

@@ -165,6 +165,7 @@ if (isset($_POST['all_meet_id']))
         echo 'Inserted - BULK enroll<br>';
     }
     header("Refresh:0");
+    
 }
 ?>
  

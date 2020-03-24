@@ -21,9 +21,8 @@
 $result = $mysqli->query($sql);
 
 ?>
-
 <form method="post" action="view_members.php">
-    <table name="view_members" border = 2>
+    <table name="view_mentees" border = 2>
     <thead id="td">
         <tr>
             <td>Mentee Name</td>
@@ -53,6 +52,42 @@ $result = $mysqli->query($sql);
     ?>
 </form>
 
+<?php
+$sql2 = "SELECT * FROM users WHERE id IN (SELECT mentor_id FROM enroll2 WHERE meet_id = $meet_id)";
+$result2 = $mysqli->query($sql2);
+?>
+
+
+<form method="post" action="view_members.php">
+    <table name="view_mentors" border = 2>
+    <thead id="td">
+        <tr>
+            <td>Mentor Name</td>
+            <td>Email</td>
+            <td>Phone</td>
+        </tr>
+    <thead>
+    <tbody>
+        <?php
+            
+            while($row = $result2->fetch_assoc()){?>
+            <tr>
+    <td>
+        <?php echo $row[ 'name']?>
+
+    </td>
+    <td>
+        <?php echo $row[ 'email'];?>
+    </td>
+    <td>
+        <?php echo $row[ 'phone'];?>
+    </td>
+    
+</tr>
+    <?php
+    }
+    ?>
+</form>
 
 
 
