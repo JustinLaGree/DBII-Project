@@ -104,6 +104,6 @@ if (isset($_POST['meet_id']))
     {
         echo 'Inserted - enroll2<br>';
     }
-  
+  header("Refresh:0");
 }
 ?>
