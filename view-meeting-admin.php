@@ -53,7 +53,7 @@ else{
             <th><?php echo $meeting["day_of_the_week"] ?></th>
             <th><?php echo $meeting["start_time"] ?></th>
             <th><?php echo $meeting["end_time"] ?></th>
-            <th><a <?php echo "href=admin-create-materials.php?meeting=$meetId" ?>>Post Study Materials</a></th>
+            <th><a <?php echo "href=admin-create-materials-form.php?meeting=$meetId" ?>>Post Study Materials</a></th>
         </tr>
     <thead>
 </table>
@@ -332,6 +332,46 @@ while($row = $result->fetch_assoc()){
         <?php } ?>
         </tbody>
     </table>
-</div>
 
+<?php 
+//get all users who are eligible to enroll in this meeting as a mentor
+$sql = $mysqli->prepare('SELECT * FROM material WHERE material_id IN (SELECT material_id FROM assign WHERE meet_id = ?)'); 
+$sql->bind_param('i', $meetId);
+
+//get the result of the select query
+$sql->execute();
+$result = $sql->get_result();
+?>
+    <br/>
+    <h3>Study Materials:</h3>
+    <table border=2>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Type</th>
+                <th>URL</th>
+                <th>Assigned Date</th>
+                <th>Notes</th>
+            </tr>
+        <thead>
+        <tbody>
+        <?php 
+            //iterate over the unregistered students and output them to the table
+            while ($row = $result->fetch_assoc()){
+        ?>
+            <tr>
+                <td><?php echo $row["title"]; ?></td>
+                <td><?php echo $row["author"]; ?></td>
+                <td><?php echo $row["type"]; ?></td>
+                <td><a <?php $url = $row["url"];
+                    echo "href='$url' target='_externalMaterials'>$url"; ?></a></td>
+                <td><?php echo $row["assigned_date"]; ?></td>
+                <td><?php echo $row["notes"]; ?></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <br/>
+</div>
 <?php } ?>
