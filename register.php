@@ -13,7 +13,7 @@ require("header.php");
 
         Full Name : <input type="text" name="fullname" required/>
         <br />
-        Phone Number : <input type="text" name="phone" required/>
+        Phone Number : <input type="text" name="phone"/>
         <br />
         Email : <input type="text" name="email" required/>
         <br />
@@ -45,9 +45,9 @@ if (isset($_POST['fullname']))
 
     $fullName = $_POST['fullname'];
     $phoneNumber = $_POST['phone'];
-    $email = $_POST['email'];
+    $email = strtolower($_POST['email']);
     $parentEmail = (array_key_exists('parentemail', $_POST))
- 	? $_POST['parentemail']
+ 	? strtolower($_POST['parentemail'])
 	: "";
     $grade = (array_key_exists('grade', $_POST))
  	? $_POST['grade']
@@ -75,11 +75,11 @@ if (isset($_POST['fullname']))
     if ($isStudent)
     {
         $sql_insert_student = "INSERT INTO students (student_id, grade, parent_id)
-                                SELECT $insertId, $grade, id
+                                SELECT $insertId, $grade, parent_id
                                 FROM parents 
                                 WHERE parent_id IN (SELECT id 
                                     FROM users 
-                                    WHERE email = '$parentEmail')";
+                                    WHERE LOWER(email) = '$parentEmail')";
 
         if(!mysqli_query($mysqli, $sql_insert_student))
         {
@@ -90,6 +90,7 @@ if (isset($_POST['fullname']))
         {
             echo 'Inserted';
         }
+        exit();
     }
     else
     {

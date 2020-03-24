@@ -82,7 +82,8 @@ $sql->bind_param('s', $meetId);
 $sql->execute();
 $result = $sql->get_result();
 
-echo $result->num_rows . " / 6 "
+$numEnroll = $result->num_rows;
+echo $numEnroll . " / 6 "
 ?>
     )</h3>
     <table border=2>
@@ -132,6 +133,11 @@ while($row = $result->fetch_assoc()){
     $enrollSql->execute();
     $enrollResult = $enrollSql->get_result();
 
+    if ($numEnroll >= 6){
+        array_push($conflicts, $row);
+        continue;
+    }
+
     $inserted = false;
     //iterate over all the meeting time info
     while ($meetingtimeRow = $enrollResult->fetch_assoc()){
@@ -141,7 +147,7 @@ while($row = $result->fetch_assoc()){
         
         //check to see if there is a conflict
         //mentors cannot register for two classes if they are on the same data/time or if they are on the same weekend and same subject/name
-        if (($dateDif < 2 && $meetingtimeRow["meet_name"] == $currentName) || $currentDate == $targetDate && $meeting["start_time"] == $meetingtimeRow["start_time"] ){
+        if (($dateDif < 2 && $meetingtimeRow["meet_name"] == $currentName) || $currentDate == $targetDate && $meeting["start_time"] == $meetingtimeRow["start_time"]){
             array_push($conflicts, $row);
             $inserted = true;
             break;
@@ -206,7 +212,8 @@ $sql->bind_param('s', $meetId);
 $sql->execute();
 $result = $sql->get_result();
 
-echo $result->num_rows . " / 3 "
+$numEnroll = $result->num_rows;
+echo $numEnroll . " / 3 "
 ?>
     )</h3>
     <table border=2>
@@ -259,6 +266,11 @@ while($row = $result->fetch_assoc()){
     $enrollResult = $enrollSql->get_result();
 
     $inserted = false;
+
+    if ($numEnroll >= 3){
+        array_push($conflicts, $row);
+        continue;
+    }
 
     //iterate over all of the time slot info for the given user
     while ($timeRow = $enrollResult->fetch_assoc()){
