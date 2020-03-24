@@ -45,7 +45,7 @@ else{
     $meeting = $result->fetch_assoc();
 ?>
 
-<table name="available_meetings" border=2>
+<table border=2>
     <thead>
         <tr>
             <th><?php echo $meeting["meet_name"] ?></th>
@@ -53,6 +53,7 @@ else{
             <th><?php echo $meeting["day_of_the_week"] ?></th>
             <th><?php echo $meeting["start_time"] ?></th>
             <th><?php echo $meeting["end_time"] ?></th>
+            <th><a <?php echo "href=admin-create-materials.php?meeting=$meetId" ?>>Post Study Materials</a></th>
         </tr>
     <thead>
 </table>

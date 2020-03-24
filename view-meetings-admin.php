@@ -1,13 +1,4 @@
 <?php
-session_start();
-
-require("header.php");
-
-//setup database constants
-define("SERVER_NAME", "localhost");
-define("DB_USER", "root");
-define("DB_PWD", "");
-define("DB_NAME", "DB2");
 
 $mysqli = new mysqli(SERVER_NAME, DB_USER, DB_PWD, DB_NAME);
 

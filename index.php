@@ -15,7 +15,7 @@ if (isset($_SESSION[USER]) && $_SESSION[USER][USERTYPE] == 1){
     //output a txt file for any meetings that need to be cancelled
     require("meeting-cancel-notification.php");
 
-    echo "<a href='view-meetings-admin.php'>View Currently Enrolled Meetings</a>";
+    require("view-meetings-admin.php");
 }
 else if (isset($_SESSION[USER])){
     echo "Welcome, " . $_SESSION[USER][NAME] . "<br/><br/>";

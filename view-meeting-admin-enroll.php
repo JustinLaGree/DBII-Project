@@ -26,14 +26,27 @@ $mode = $_GET["mode"];
 //use mode param to insert relation into enroll/enroll2 table
 if ($mode === "mentee"){
     //setup insert statement
+    $sql = $mysqli->prepare('INSERT INTO mentees (mentee_id) VALUES (?)');
+    $sql->bind_param('s', $userId);
+
+    //get the result of the select query
+    $sql->execute();
+
+    //setup insert statement
     $sql = $mysqli->prepare('INSERT INTO enroll (meet_id, mentee_id) VALUES (?, ?)');
     $sql->bind_param('ss', $meetId, $userId);
 
     //get the result of the select query
     $sql->execute();
-    $result = $sql->get_result();
 }
 else if ($mode === "mentor"){
+    //setup insert statement
+    $sql = $mysqli->prepare('INSERT INTO mentors (mentor_id) VALUES (?)');
+    $sql->bind_param('s', $userId);
+
+    //get the result of the select query
+    $sql->execute();
+
     //setup insert statement
     $sql = $mysqli->prepare('INSERT INTO enroll2 (meet_id, mentor_id) VALUES (?, ?)');
     $sql->bind_param('ss', $meetId, $userId);
