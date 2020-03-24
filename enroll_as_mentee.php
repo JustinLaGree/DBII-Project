@@ -12,7 +12,8 @@
     $id = $_SESSION['user']['id'];
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
 
-    $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE description = (SELECT grade FROM students WHERE student_id = $id))";
+    $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE description = (SELECT grade FROM students WHERE student_id = $id))
+                                                     AND meet_id NOT IN (SELECT meet_id FROM enroll GROUP BY meet_id HAVING count(*) > 5)";
     //select the meetings where the group_id is in the groups where the mentee_grade_req < the student grade level
     //echo $_SESSION["user"]["name"];
     
