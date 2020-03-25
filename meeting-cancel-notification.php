@@ -10,11 +10,15 @@ if (!($_SESSION[USER][USERTYPE] === 1)){
     header("Location: index.php");
 }
 
+date_default_timezone_set("America/New_York");
+
 //setup sql connection
 $mysqli = new mysqli(SERVER_NAME, DB_USER, DB_PWD, DB_NAME);
 
 //get the meeting timeslot info for all meetings
-$sql = $mysqli->prepare('SELECT * FROM meetings m, time_slot t WHERE m.time_slot_id = t.time_slot_id ORDER BY date ASC'); 
+$sql = $mysqli->prepare('SELECT * FROM meetings m, time_slot t WHERE m.time_slot_id = t.time_slot_id 
+                         AND meet_id NOT IN (SELECT meet_id FROM enroll GROUP BY meet_id HAVING count(*) > 2)
+                         ORDER BY date ASC'); 
 
 //get the result of the select query
 $sql->execute();
@@ -29,7 +33,7 @@ while ($row = $result->fetch_assoc()){
     $meetTimeFormatted = substr($row["end_time"], 0, 2) . "-" . substr($row["end_time"], 3, 2) . "_" . substr($row["start_time"], 0, 2) . "-" . substr($row["start_time"], 3, 2);
 
     $meetDate = strtotime($meetDateFormatted);
-    $dateDif = round(($now - $meetDate) / (60 * 60 * 24));
+    $dateDif = round(($meetDate - $now) / (60 * 60 * 24));
 
     //if the current day is friday and meeting happens today, tomorrow, or sunday
     if ($dow == "Friday" && $dateDif > -1 && $dateDif <= 3){
