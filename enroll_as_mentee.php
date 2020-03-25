@@ -13,12 +13,18 @@
     $date = date('Ymd');
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
     //Show meetings only if the group matches the user, the meeting is not full, and it is not passed the available time to enroll.
-    $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE description = (SELECT grade FROM students WHERE student_id = $id))
-                                                     AND meet_id NOT IN (SELECT meet_id FROM enroll GROUP BY meet_id HAVING count(*) > 5)
-                                                     AND DATEDIFF(meetings.date, $date) > 3
-                                                     AND (meetings.date, time_slot_id) NOT IN
-                                (SELECT date, time_slot_id FROM meetings WHERE meet_id IN (SELECT meet_id FROM enroll WHERE mentee_id = $id) OR meet_id IN (SELECT meet_id FROM enroll2 WHERE mentor_id = $id))"
-                                                                                                    ;
+    $sql = "SELECT * FROM meetings WHERE group_id IN
+                (SELECT group_id FROM groups WHERE description =
+                    (SELECT grade FROM students WHERE student_id = $id))
+                AND meet_id NOT IN (SELECT meet_id FROM enroll
+                    GROUP BY meet_id
+                        HAVING count(*) > 5)
+                AND DATEDIFF(meetings.date, $date) > 3
+                AND (meetings.date, time_slot_id) NOT IN
+                    (SELECT date, time_slot_id FROM meetings WHERE meet_id IN
+                        (SELECT meet_id FROM enroll WHERE mentee_id = $id)
+                            OR meet_id IN
+                                (SELECT meet_id FROM enroll2 WHERE mentor_id = $id))";
                                                      
     
     
@@ -166,7 +172,9 @@ if (isset($_POST['all_meet_id']))
     echo $meet_name;
 
     //insert the student into all meetings from that group and that meeting type. Ex) All math meetings for grade 6
-    $sql = "INSERT INTO enroll(meet_id, mentee_id) SELECT meet_id, $id FROM meetings WHERE group_id = $group_id AND meet_name = '$meet_name'";
+    $sql = "INSERT INTO enroll(meet_id, mentee_id)
+                SELECT meet_id, $id FROM meetings WHERE group_id = $group_id
+                    AND meet_name = '$meet_name'";
 
     //get the result of the select query
     if(!$mysqli->query($sql))

@@ -13,7 +13,10 @@
     $id = $_SESSION['user']['id'];
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
 
-    $sql = "SELECT * FROM meetings WHERE meet_id IN (SELECT meet_id FROM enroll WHERE mentee_id = $id) OR meet_id IN (SELECT meet_id FROM enroll2 WHERE mentor_id = $id)";
+    $sql = "SELECT * FROM meetings WHERE meet_id IN
+                (SELECT meet_id FROM enroll WHERE mentee_id = $id)
+                OR meet_id IN
+                    (SELECT meet_id FROM enroll2 WHERE mentor_id = $id)";
     
     //select the meetings where the group_id is in the groups where the mentee_grade_req < the student grade level
     //echo $_SESSION["user"]["name"];
