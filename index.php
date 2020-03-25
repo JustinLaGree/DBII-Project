@@ -17,11 +17,14 @@ if (isset($_SESSION[USER]) && $_SESSION[USER][USERTYPE] == 1){
 
     require("view-meetings-admin.php");
 }
-else if (isset($_SESSION[USER])){
+else if (isset($_SESSION[USER]) && $_SESSION[USER][USERTYPE] == 2){
     echo "Welcome, " . $_SESSION[USER][NAME] . "<br/><br/>";
     echo "<a href='enroll_as_mentee.php'>Enroll As a Mentee</a><br/><br/>";
     echo "<a href='enroll_as_mentor.php'>Enroll As a Mentor</a><br/><br/>";
     echo "<a href='view_meetings.php'>View Currently Enrolled Meetings</a>";
+}
+else if (isset($_SESSION[USER]) && $_SESSION[USER][USERTYPE] == 3){
+    echo "Welcome, " . $_SESSION[USER][NAME] . "<br/><br/>";
 }
 else {
     echo "Please login<br/>";

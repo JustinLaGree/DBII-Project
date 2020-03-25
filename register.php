@@ -21,7 +21,7 @@ require("header.php");
 <?php
     if (isset($_GET['Student']) || isset($_POST['Student'])){
         echo "Parent Email : <input type='text' name='parentemail' required/><br/>";
-        echo "Grade Level : <input type='text' name='grade' required/><br/>";
+        echo "Grade Level : <input type='number' name='grade' required/><br/>";
     }
 ?>
 
