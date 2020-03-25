@@ -1,3 +1,4 @@
+
 <?php 
 require("header.php");
 ?>
@@ -19,6 +20,7 @@ require("header.php");
         <br />
 
 <?php
+    //check if the register attempt is from a student or parent
     if (isset($_GET['Student']) || isset($_POST['Student'])){
         echo "Parent Email : <input type='text' name='parentemail' required/><br/>";
         echo "Grade Level : <input type='number' name='grade' required/><br/>";
@@ -37,8 +39,10 @@ require("header.php");
 
 <?php
 
+//verify that fields have been filled out (other required checks done within table creation)
 if (isset($_POST['fullname']))
 {
+    //connect to DB
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
 
     $isStudent = isset($_POST['grade']);
@@ -71,7 +75,8 @@ if (isset($_POST['fullname']))
 
     $insertId = $mysqli->insert_id;
     echo "insert: $insertId";
-    
+
+    //insert into student table
     if ($isStudent)
     {
         $sql_insert_student = "INSERT INTO students (student_id, grade, parent_id)
@@ -92,6 +97,7 @@ if (isset($_POST['fullname']))
         }
         exit();
     }
+    //insert into parent table if not a student
     else
     {
         $sql_insert_parent = "INSERT INTO parents (parent_id) VALUES ('$insertId')";
@@ -105,6 +111,7 @@ if (isset($_POST['fullname']))
             echo 'Inserted';
         }
     }
+    //refresh the page to update tables
     header("Location: login.php");
 }
 ?>

@@ -11,10 +11,23 @@
 <?php
     $id = $_SESSION['user']['id'];
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
-
-    $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE mentor_grade_req <= (SELECT grade FROM students WHERE student_id = $id))
-                AND date NOT IN (SELECT date from meetings WHERE meet_id in (SELECT meet_id FROM enroll2 where mentor_id = $id))
-                AND meet_id NOT IN (SELECT meet_id FROM enroll2 GROUP BY meet_id HAVING count(*) > 2)";
+    $date = date('Ymd');
+    //show only meetings where the the student is old enough to mentor, isn't on the same weekend as another, is under capacity, and isn't too late to enroll
+    $sql = "SELECT * FROM meetings WHERE group_id IN
+                (SELECT group_id FROM groups
+                    WHERE mentor_grade_req <=
+                        (SELECT grade FROM students
+                            WHERE student_id = $id))
+                    AND date NOT IN
+                        (SELECT date FROM meetings
+                            WHERE meet_id in
+                                (SELECT meet_id FROM enroll2
+                                    where mentor_id = $id))
+                    AND meet_id NOT IN
+                        (SELECT meet_id FROM enroll2
+                            GROUP BY meet_id
+                                HAVING count(*) > 2)
+                    AND DATEDIFF(meetings.date, $date) > 3";
     //select the meetings where the group_id is in the groups where the mentee_grade_req < the student grade level
     //echo $_SESSION["user"]["name"];
 
