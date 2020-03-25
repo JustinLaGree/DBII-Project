@@ -12,12 +12,15 @@
     $id = $_SESSION['user']['id'];
     $date = date('Ymd');
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
+    //Show meetings only if the group matches the user, the meeting is not full, and it is not passed the available time to enroll.
     $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE description = (SELECT grade FROM students WHERE student_id = $id))
                                                      AND meet_id NOT IN (SELECT meet_id FROM enroll GROUP BY meet_id HAVING count(*) > 5)
-                                                     AND DATEDIFF(meetings.date, $date) > 3";
+                                                     AND DATEDIFF(meetings.date, $date) > 3
+                                                     AND (meetings.date, time_slot_id) NOT IN
+                                (SELECT date, time_slot_id FROM meetings WHERE meet_id IN (SELECT meet_id FROM enroll WHERE mentee_id = $id) OR meet_id IN (SELECT meet_id FROM enroll2 WHERE mentor_id = $id))"
+                                                                                                    ;
                                                      
-    //select the meetings where the group_id is in the groups where the mentee_grade_req < the student grade level
-    //echo $_SESSION["user"]["name"];
+    
     
 $result = $mysqli->query($sql);
 echo mysqli_error($mysqli);
@@ -31,6 +34,7 @@ echo mysqli_error($mysqli);
             <td>Group ID</td>
             <td>Meeting Name</td>
             <td>Date</td>
+            <td>Time Slot</td>
             <td>Current Mentee Enrollment</td>
             <td>Enroll</td>
             <td>Bulk Enroll</td>
@@ -56,7 +60,11 @@ echo mysqli_error($mysqli);
         <?php echo $row[ 'date'];?>
     </td>
     <td>
+        <?php echo $row[ 'time_slot_id'];?>
+    </td>
+    <td>
         <?php
+            //Display the amount of remaining spots in the meeting
             $mentee_cap_sql = "SELECT COUNT(mentee_id) as c1 FROM enroll WHERE meet_id = $row[meet_id]";
             $result2 = $mysqli->query($mentee_cap_sql);
             echo $mysqli->error;
@@ -157,6 +165,7 @@ if (isset($_POST['all_meet_id']))
     
     echo $meet_name;
 
+    //insert the student into all meetings from that group and that meeting type. Ex) All math meetings for grade 6
     $sql = "INSERT INTO enroll(meet_id, mentee_id) SELECT meet_id, $id FROM meetings WHERE group_id = $group_id AND meet_name = '$meet_name'";
 
     //get the result of the select query
