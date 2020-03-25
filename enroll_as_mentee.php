@@ -10,14 +10,17 @@
 
 <?php
     $id = $_SESSION['user']['id'];
+    $date = date('Ymd');
     $mysqli = new mysqli('localhost', 'root', '', 'DB2');
-
     $sql = "SELECT * FROM meetings WHERE group_id IN (SELECT group_id FROM groups WHERE description = (SELECT grade FROM students WHERE student_id = $id))
-                                                     AND meet_id NOT IN (SELECT meet_id FROM enroll GROUP BY meet_id HAVING count(*) > 5)";
+                                                     AND meet_id NOT IN (SELECT meet_id FROM enroll GROUP BY meet_id HAVING count(*) > 5)
+                                                     AND DATEDIFF(meetings.date, $date) > 3";
+                                                     
     //select the meetings where the group_id is in the groups where the mentee_grade_req < the student grade level
     //echo $_SESSION["user"]["name"];
     
 $result = $mysqli->query($sql);
+echo mysqli_error($mysqli);
 ?>
 
 
@@ -36,7 +39,10 @@ $result = $mysqli->query($sql);
     <tbody>
         <?php
             
-            while($row = $result->fetch_assoc()){?>
+            while($row = $result->fetch_assoc()){
+                
+
+?>
             <tr>
     <td>
         <?php echo $row[ 'group_id']?>
@@ -56,7 +62,7 @@ $result = $mysqli->query($sql);
             echo $mysqli->error;
             while($row2 = $result2->fetch_assoc()){
             echo $row2[ 'c1'];
-            echo '/6';
+            echo ' / 6';
             }
         ?>
     </td>
