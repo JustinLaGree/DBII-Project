@@ -39,7 +39,7 @@ $result = $mysqli->query($sql);
     <table name="available_meetings" border = 2>
     <thead id="td">
         <tr>
-            <td>Group ID</td>
+            <td>Grade</td>
             <td>Meeting Name</td>
             <td>Date</td>
             <td>Current Mentor Enrollment</td>
@@ -52,7 +52,7 @@ $result = $mysqli->query($sql);
             while($row = $result->fetch_assoc()){?>
             <tr>
     <td>
-        <?php echo $row[ 'group_id']?>
+        <?php echo $row[ 'group_id'] + 5?>
 
     </td>
     <td>

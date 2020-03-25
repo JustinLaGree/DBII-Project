@@ -37,7 +37,7 @@ echo mysqli_error($mysqli);
     <table name="available_meetings" border = 2>
     <thead id="td">
         <tr>
-            <td>Group ID</td>
+            <td>Grade</td>
             <td>Meeting Name</td>
             <td>Date</td>
             <td>Time Slot</td>
@@ -55,7 +55,7 @@ echo mysqli_error($mysqli);
 ?>
             <tr>
     <td>
-        <?php echo $row[ 'group_id']?>
+        <?php echo $row[ 'group_id'] + 5?>
 
     </td>
     <td>
