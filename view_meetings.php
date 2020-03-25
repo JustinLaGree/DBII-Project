@@ -34,33 +34,39 @@ $result = $mysqli->query($sql);
     <tbody>
         <?php
             
-            while($row = $result->fetch_assoc()){?>
-            <tr>
-    <td>
-        <?php echo $row[ 'meet_name']?>
+            while($row = $result->fetch_assoc()){
+                $meetId = $row["meet_id"]; ?>
+        <tr>
+            <td>
+                <?php echo $row[ 'meet_name']?>
 
-    </td>
-    <td>
-        <?php echo $row[ 'date'];?>
-    </td>
-    <td>
-        <form method="post" action="view_meetings.php">
-            <input type="hidden" name="meet_id" value="<?php echo $row['meet_id'] ?>" />
-            <input type="submit" name="submit" value="Remove Enrollment"/>
-        </form>
-    </td>
-    <td>
-        <form method="post" action="view_meetings.php">
-            <input type="hidden" name="view_members_id" value="<?php echo $row['meet_id'] ?>" />
-            <input type="submit" name="submit" value="View Members"/>
-        </form>
-    </td>
-    
-    
-</tr>
+            </td>
+            <td>
+                <?php echo $row[ 'date'];?>
+            </td>
+            <td>
+                <form method="post" action="view_meetings.php">
+                    <input type="hidden" name="meet_id" value="<?php echo $row['meet_id'] ?>" />
+                    <input type="submit" name="submit" value="Remove Enrollment"/>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="view_meetings.php">
+                    <input type="hidden" name="view_members_id" value="<?php echo $row['meet_id'] ?>" />
+                    <input type="submit" name="submit" value="View Members"/>
+                </form>
+            </td>
+            <td>                
+                <form method="post" action='view_meeting_materials.php'>
+                    <input type="hidden" name="meeting" value="<?php echo $row['meet_id'] ?>" />
+                    <input type="submit" name="submit" value="View Materials"/>
+                </form>
+            </td>
+        </tr>
     <?php
     }
     ?>
+    </tbody>
 </form>
 
 
