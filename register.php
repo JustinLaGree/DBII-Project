@@ -58,6 +58,19 @@ if (isset($_POST['fullname']))
 	: "";
     $password = $_POST['password'];
 
+    //get the meeting timeslot info for all meetings
+    $sql = $mysqli->prepare("SELECT parent_id FROM parents WHERE parent_id IN (SELECT id FROM users WHERE LOWER(email) = '$parentEmail')"); 
+
+    //get the result of the select query
+    $sql->execute();
+    $result = $sql->get_result();
+
+    if ($result->num_rows != 1 && $parentEmail != ""){
+        //refresh the page to update tables
+        echo "Student Creation was unsuccessful. Did not specify a valid parent email address. ";
+        exit();
+    }
+
     //prepare a new query where we get the use with specified email
     $sql = "INSERT INTO users (email, password, name, phone) VALUES ('$email', '$password', '$fullName', '$phoneNumber')"; 
 
