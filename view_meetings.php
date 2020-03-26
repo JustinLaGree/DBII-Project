@@ -30,6 +30,7 @@ $result = $mysqli->query($sql);
     <table name="available_meetings" border = 2>
     <thead id="td">
         <tr>
+            <td>Grade</td>
             <td>Meeting Name</td>
             <td>Date</td>
             <td>Choose</td>
@@ -43,6 +44,10 @@ $result = $mysqli->query($sql);
             while($row = $result->fetch_assoc()){
                 $meetId = $row["meet_id"]; ?>
         <tr>
+            <td>
+                <?php echo $row[ 'group_id'] + 5?>
+
+            </td>
             <td>
                 <?php echo $row[ 'meet_name']?>
 
