@@ -404,7 +404,8 @@ VALUES
 (11, 17),
 (11, 19),
 (16, 21),
-(16, 23);
+(16, 23),
+(22, 13);
 
 INSERT INTO enroll2 (meet_id, mentor_id)
 VALUES
