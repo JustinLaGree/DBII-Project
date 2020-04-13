@@ -77,17 +77,17 @@ if (isset($_POST['fullname']))
     //get the result of the select query
     if(!$mysqli->query($sql))
     {
-        echo 'Not Inserted - User';
-        echo mysqli_error($mysqli);
+        //echo 'Not Inserted - User';
+        //echo mysqli_error($mysqli);
         return;
     }
     else
     {
-        echo 'Inserted';
+        //echo 'Inserted';
     }
 
     $insertId = $mysqli->insert_id;
-    echo "insert: $insertId";
+    //echo "insert: $insertId";
 
     //insert into student table
     if ($isStudent)
@@ -101,12 +101,12 @@ if (isset($_POST['fullname']))
 
         if(!mysqli_query($mysqli, $sql_insert_student))
         {
-            echo 'Not Inserted: Student';
-            echo mysqli_error($mysqli);
+            //echo 'Not Inserted: Student';
+            //echo mysqli_error($mysqli);
         }
         else
         {
-            echo 'Inserted';
+            //echo 'Inserted';
         }
         exit();
     }
@@ -116,12 +116,12 @@ if (isset($_POST['fullname']))
         $sql_insert_parent = "INSERT INTO parents (parent_id) VALUES ('$insertId')";
         if(!mysqli_query($mysqli, $sql_insert_parent))
         {
-            echo 'Not Inserted: Parent';
-            echo mysqli_error($mysqli);
+            //echo 'Not Inserted: Parent';
+            //echo mysqli_error($mysqli);
         }
         else
         {
-            echo 'Inserted';
+            //echo 'Inserted';
         }
     }
     //refresh the page to update tables
