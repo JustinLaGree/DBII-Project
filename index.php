@@ -27,7 +27,7 @@ else if (isset($_SESSION[USER]) && $_SESSION[USER][USERTYPE] == 3){
     echo "Welcome, " . $_SESSION[USER][NAME] . "<br/><br/>";
 }
 else {
-    echo "Please login<br/>";
+    echo "Please login!!<br/>";
 }
 ?>
 
