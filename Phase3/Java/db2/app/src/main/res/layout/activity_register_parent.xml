@@ -7,10 +7,10 @@
     tools:context=".RegisterParentActivity">
 
     <TextView
-        android:id="@+id/registerParent_textView"
+        android:id="@+id/textView_registerParent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="15dp"
         android:text="Register Parent"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,59 +19,59 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/RegParentFullName_editText"
+        android:id="@+id/editText_RegParentFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Full Name"
-        app:layout_constraintBottom_toTopOf="@+id/RegParentPhoneNumber_editText"
+        app:layout_constraintBottom_toTopOf="@+id/editText_RegParentPhoneNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/RegParentPhoneNumber_editText"
+        android:id="@+id/editText_RegParentPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Phone Number"
-        app:layout_constraintBottom_toTopOf="@+id/RegParentEmail_editText"
+        app:layout_constraintBottom_toTopOf="@+id/editText_RegParentEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/RegParentEmail_editText"
+        android:id="@+id/editText_RegParentEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Email"
-        app:layout_constraintBottom_toTopOf="@+id/RegParentPassword_editText"
+        app:layout_constraintBottom_toTopOf="@+id/editText_RegParentPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/RegParentPassword_editText"
+        android:id="@+id/editText_RegParentPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Password"
-        app:layout_constraintBottom_toTopOf="@+id/RegParentSubmit_button"
+        app:layout_constraintBottom_toTopOf="@+id/button_RegParentSubmit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/RegParentSubmit_button"
+        android:id="@+id/button_RegParentSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
@@ -80,4 +80,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_regParentBack"
+        android:layout_width="72dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

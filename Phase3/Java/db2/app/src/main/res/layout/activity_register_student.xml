@@ -10,7 +10,7 @@
         android:id="@+id/RegisterStudent_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
         android:text="Register Student"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/regStudentSubmit_button"
+        android:id="@+id/button_regStudentSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
@@ -30,81 +30,92 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/regStudentFullName_editText"
+        android:id="@+id/editText_regStudentFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Full Name"
-        app:layout_constraintBottom_toTopOf="@+id/regStudentPhoneNumber_editText"
+        app:layout_constraintBottom_toTopOf="@+id/editText_regStudentPhoneNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/regStudentPhoneNumber_editText"
+        android:id="@+id/editText_regStudentPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Phone Number"
-        app:layout_constraintBottom_toTopOf="@+id/regStudentEmail_editText"
+        app:layout_constraintBottom_toTopOf="@+id/editText_regStudentEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/regStudentEmail_editText"
+        android:id="@+id/editText_regStudentEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Email"
-        app:layout_constraintBottom_toTopOf="@+id/regStudentParentEmail_editText"
+        app:layout_constraintBottom_toTopOf="@+id/editText_regStudentParentEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/regStudentParentEmail_editText"
+        android:id="@+id/editText_regStudentParentEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Parent Email"
-        app:layout_constraintBottom_toTopOf="@+id/regStudentGradeLevel_editText"
+        app:layout_constraintBottom_toTopOf="@+id/editText_regStudentGradeLevel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/regStudentGradeLevel_editText"
+        android:id="@+id/editText_regStudentGradeLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="number"
         android:text="Grade Level"
-        app:layout_constraintBottom_toTopOf="@+id/regStudentPassword_editText"
+        app:layout_constraintBottom_toTopOf="@+id/editText_regStudentPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/regStudentPassword_editText"
+        android:id="@+id/editText_regStudentPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Password"
-        app:layout_constraintBottom_toTopOf="@+id/regStudentSubmit_button"
+        app:layout_constraintBottom_toTopOf="@+id/button_regStudentSubmit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_regStudentBack"
+        android:layout_width="73dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
