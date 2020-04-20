@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.db2.helpers.UserSession;
+import com.example.db2.helpers.UserType;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
         String welcomeStr = String.format("Welcome, %s!", UserSession.getInstance().name);
         welcome_text.setText(welcomeStr);
 
-        boolean isAdmin = UserSession.getIsAdmin();
-        boolean isParent = UserSession.getIsParent();
-        boolean isStudent = UserSession.getIsStudent();
+        UserType userType = UserSession.getUserType();
     }
 }
