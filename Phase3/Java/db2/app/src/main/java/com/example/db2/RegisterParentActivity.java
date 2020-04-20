@@ -20,7 +20,7 @@ public class RegisterParentActivity extends AppCompatActivity {
         final EditText editText_RegParentPassword = findViewById(R.id.editText_RegParentPassword);
         final EditText editText_RegParentPhoneNumber = findViewById(R.id.editText_RegParentPhoneNumber);
 
-        final Intent homeScreenIntent = new Intent(this, MainActivity.class);
+        final Intent homeScreenIntent = new Intent(this, LoginActivity.class);
 
         final Button button_RegParentBack = findViewById(R.id.button_regParentBack);
         final Button button_RegParentSubmit = findViewById(R.id.button_RegParentSubmit);

@@ -1,4 +1,4 @@
-package com.example.db2;
+package com.example.db2.config;
 
 public class ApplicationConfig {
 
@@ -9,7 +9,7 @@ public class ApplicationConfig {
 
     private ApplicationConfig()
     {
-        basePath = "http://localhost/";
+        basePath = "http://10.0.2.2:8070/";
         apiPath = "Phase3/api/ExecQuery.php";
     }
 

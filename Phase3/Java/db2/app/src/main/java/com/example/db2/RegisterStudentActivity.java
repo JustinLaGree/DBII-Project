@@ -22,7 +22,7 @@ public class RegisterStudentActivity extends AppCompatActivity {
         final EditText editText_RegStudentPassword = findViewById(R.id.editText_regStudentPassword);
         final EditText editText_RegStudentPhoneNumber = findViewById(R.id.editText_regStudentPhoneNumber);
 
-        final Intent homeScreenIntent = new Intent(this, MainActivity.class);
+        final Intent homeScreenIntent = new Intent(this, LoginActivity.class);
 
         final Button button_RegStudentBack = findViewById(R.id.button_regStudentBack);
         final Button button_RegStudentSubmit = findViewById(R.id.button_regStudentSubmit);
