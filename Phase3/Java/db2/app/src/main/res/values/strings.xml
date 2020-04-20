@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">db2</string>
-    <string name="logout_button">logout</string>
+    <string name="app_name">DB2 - Student Management Portal</string>
+    <string name="login_button">Login</string>
+    <string name="register_as_student_button">Register as Student</string>
+    <string name="register_as_parent_button">Register as Parent</string>
+    <string name="logout_button">Logout</string>
+    <string name="email_text_hint">Enter Your Email</string>
+    <string name="password_text_hint">Enter Your Password</string>
 </resources>

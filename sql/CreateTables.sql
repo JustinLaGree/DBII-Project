@@ -216,7 +216,7 @@ VALUES
 (8, 'SarahWelton@gmail.com', 'tilefloor', 'Sarah Welton', '800-800-8111'),
 (9, 'MileyWelton@gmail.com', 'waterbottle', 'Miley Welton', '800-800-8222'),
 (10, 'DannyJohnson@gmail.com', 'whiteboard', 'Danny Johnson', '808-800-9999'),
-(11, 'admin@admin', 'password', 'Admin', null),
+(11, 'admin@admin.com', 'password', 'Admin', null),
 (12, 'ParentGeorge@gmail.com', 'password', 'Parent George', null),
 (13, 'StudentGeorge@gmail.com', 'password', 'Student George', null),
 (14, 'ParentWest@gmail.com', 'password', 'Parent West', null),
