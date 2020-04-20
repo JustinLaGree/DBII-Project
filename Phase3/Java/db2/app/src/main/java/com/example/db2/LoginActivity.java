@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 QueryExecution.executeQuery(query);
 
-                ArrayList<User> users = QueryExecution.getResponse(new User());
+                ArrayList<User> users = QueryExecution.getResponse(User.class);
 
                 if (users != null && users.size() >= 1) {
                     UserSession.setInstance(users.get(0));

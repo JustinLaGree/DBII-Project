@@ -43,7 +43,7 @@ public class UserSession {
         String query = String.format("SELECT * FROM admins WHERE admin_id=%d", instance.id);
         QueryExecution.executeQuery(query);
 
-        ArrayList<Admin> admins = QueryExecution.getResponse(new Admin());
+        ArrayList<Admin> admins = QueryExecution.getResponse(Admin.class);
 
         if (admins != null && admins.size() >= 1)
         {
@@ -53,7 +53,7 @@ public class UserSession {
         query = String.format("SELECT * FROM parents WHERE parent_id=%d", instance.id);
         QueryExecution.executeQuery(query);
 
-        ArrayList<Parent> parents = QueryExecution.getResponse(new Parent());
+        ArrayList<Parent> parents = QueryExecution.getResponse(Parent.class);
 
         if (parents != null && parents.size() >= 1)
         {
@@ -63,7 +63,7 @@ public class UserSession {
         query = String.format("SELECT student_id FROM students WHERE student_id=%d", instance.id);
         QueryExecution.executeQuery(query);
 
-        ArrayList<Student> students = QueryExecution.getResponse(new Student());
+        ArrayList<Student> students = QueryExecution.getResponse(Student.class);
 
         if (students != null && students.size() >= 1)
         {

@@ -72,10 +72,10 @@ public class QueryExecution {
         QueryExecution.rawResponse = response.toString();
     }
 
-    public static <T> ArrayList<T> getResponse(T type){
+    public static <T> ArrayList<T> getResponse(Class<T> type){
         ObjectMapper mapper = new ObjectMapper();
         TypeFactory factory = mapper.getTypeFactory();
-        CollectionType listType = factory.constructCollectionType(List.class, type.getClass());
+        CollectionType listType = factory.constructCollectionType(List.class, type);
         try {
             return mapper.readValue(rawResponse, listType);
         } catch (Exception e) {
