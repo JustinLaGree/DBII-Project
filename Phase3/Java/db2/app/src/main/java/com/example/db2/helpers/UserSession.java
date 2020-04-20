@@ -24,7 +24,11 @@ public class UserSession {
     public static User setInstance(User user)
     {
         instance = user;
-        setUserType();
+
+        userType = (user != null)
+                ? findUserType()
+                : UserType.NONE;
+
         return instance;
     }
 
@@ -34,7 +38,7 @@ public class UserSession {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private static void setUserType()
+    private static UserType findUserType()
     {
         String query = String.format("SELECT * FROM admins WHERE admin_id=%d", instance.id);
         QueryExecution.executeQuery(query);
@@ -43,8 +47,7 @@ public class UserSession {
 
         if (admins != null && admins.size() >= 1)
         {
-            userType = UserType.ADMIN;
-            return;
+            return UserType.ADMIN;
         }
 
         query = String.format("SELECT * FROM parents WHERE parent_id=%d", instance.id);
@@ -54,8 +57,7 @@ public class UserSession {
 
         if (parents != null && parents.size() >= 1)
         {
-            userType = UserType.PARENT;
-            return;
+            return UserType.PARENT;
         }
 
         query = String.format("SELECT student_id FROM students WHERE student_id=%d", instance.id);
@@ -65,10 +67,9 @@ public class UserSession {
 
         if (students != null && students.size() >= 1)
         {
-            userType = UserType.STUDENT;
-            return;
+            return UserType.STUDENT;
         }
 
-        userType = UserType.NONE;
+        return UserType.NONE;
     }
 }

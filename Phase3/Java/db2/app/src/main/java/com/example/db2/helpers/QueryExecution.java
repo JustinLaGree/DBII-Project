@@ -39,9 +39,7 @@ public class QueryExecution {
     public static void executeQueryWebRequest(String query) {
         StringBuilder response = new StringBuilder();
 
-        Pair queryPair = new Pair("query", query);
-        String formattedBody = String.format("{ \"%s\": \"%s\" }", queryPair.first, queryPair.second);
-
+        String formattedBody = String.format("{ \"query\": \"%s\" }", query);
         try {
             URL url = new URL(ApplicationConfig.getInstance().getFullApiPath());
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
