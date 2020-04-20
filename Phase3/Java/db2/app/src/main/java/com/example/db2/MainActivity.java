@@ -17,5 +17,9 @@ public class MainActivity extends AppCompatActivity {
         final TextView welcome_text = findViewById(R.id.welcome_text);
         String welcomeStr = String.format("Welcome, %s!", UserSession.getInstance().name);
         welcome_text.setText(welcomeStr);
+
+        boolean isAdmin = UserSession.getIsAdmin();
+        boolean isParent = UserSession.getIsParent();
+        boolean isStudent = UserSession.getIsStudent();
     }
 }

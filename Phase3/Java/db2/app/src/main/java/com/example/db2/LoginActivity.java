@@ -6,13 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.db2.helpers.QueryExecution;
-import com.example.db2.helpers.User;
+import com.example.db2.models.User;
 import com.example.db2.helpers.UserSession;
 
 import java.util.ArrayList;
@@ -48,14 +47,11 @@ public class LoginActivity extends AppCompatActivity {
 
                 String query = String.format("SELECT * from users WHERE LOWER(email)='%s' AND password='%s'", email, password);
 
-                Thread t = new Thread(() -> QueryExecution.executeQuery(query));
-                t.start();
-
-                while (t.isAlive()){}
+                QueryExecution.executeQuery(query);
 
                 ArrayList<User> users = QueryExecution.getResponse(new User());
 
-                if (users.size() == 1) {
+                if (users != null && users.size() >= 1) {
                     UserSession.setInstance(users.get(0));
                     startActivity(mainIntent);
                 }

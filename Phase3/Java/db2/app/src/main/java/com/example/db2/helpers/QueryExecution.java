@@ -25,10 +25,18 @@ import java.util.List;
 public class QueryExecution {
 
     public static String rawResponse;
-    public static Object[] response;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static void executeQuery(String query) {
+    public static void executeQuery(String query)
+    {
+        Thread t = new Thread(() -> QueryExecution.executeQueryWebRequest(query));
+        t.start();
+
+        while (t.isAlive()){}
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static void executeQueryWebRequest(String query) {
         StringBuilder response = new StringBuilder();
 
         Pair queryPair = new Pair("query", query);
@@ -39,8 +47,6 @@ public class QueryExecution {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setDoOutput(true);
-
-            //con.addRequestProperty("Content-Type", "application/" + "json");
 
             OutputStream os = con.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
