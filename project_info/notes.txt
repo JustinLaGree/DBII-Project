@@ -1,5 +1,6 @@
 Notes & Rules:
 
+When a student registers, he/she should automatically be assigned to a group. Not actually done.
 
 When a student registers for a meeting, it should check if they meet the group requirements of that meeting when they select mentor or mentee.
 
