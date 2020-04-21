@@ -1,12 +1,16 @@
 package com.example.db2;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.db2.helpers.QueryExecution;
 
 public class RegisterParentActivity extends AppCompatActivity {
 
@@ -26,9 +30,23 @@ public class RegisterParentActivity extends AppCompatActivity {
         final Button button_RegParentSubmit = findViewById(R.id.button_RegParentSubmit);
 
         button_RegParentSubmit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 //call register parent function
+                String fullName = editText_RegParentFullName.getText().toString().toLowerCase();
+                String email = editText_RegParentEmail.getText().toString().toLowerCase();
+                String password = editText_RegParentPassword.getText().toString().toLowerCase();
+                String phoneNumber = editText_RegParentPhoneNumber.getText().toString().toLowerCase();
+
+                String query = String.format("INSERT INTO users (email, password, name, phone) VALUES ('%s', '%s', '%s', '%s')", email, password, fullName, phoneNumber);
+                QueryExecution.executeQuery(query);
+
+                query = String.format("INSERT INTO parents (parent_id) SELECT id FROM users WHERE email = '%s'", email);
+                QueryExecution.executeQuery(query);
+
+                startActivity(homeScreenIntent);
+
             }
         });
 
