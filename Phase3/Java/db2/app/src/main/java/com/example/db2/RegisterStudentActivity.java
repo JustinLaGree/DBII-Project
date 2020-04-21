@@ -1,12 +1,16 @@
 package com.example.db2;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.db2.helpers.QueryExecution;
 
 public class RegisterStudentActivity extends AppCompatActivity {
 
@@ -28,9 +32,25 @@ public class RegisterStudentActivity extends AppCompatActivity {
         final Button button_RegStudentSubmit = findViewById(R.id.button_regStudentSubmit);
 
         button_RegStudentSubmit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                //call the register student function here
+
+                String name = editText_RegStudentFullName.getText().toString().toLowerCase();
+                String email = editText_RegStudentEmail.getText().toString().toLowerCase();
+                String grade = editText_RegStudentGradeLevel.getText().toString().toLowerCase();
+                String parent_email = editText_RegStudentParentEmail.getText().toString().toLowerCase();
+                String password = editText_RegStudentPassword.getText().toString().toLowerCase();
+                String phone = editText_RegStudentPhoneNumber.getText().toString().toLowerCase();
+
+                String query = String.format("INSERT INTO users (email, password, name, phone) VALUES ('%s', '%s', '%s', '%s')", email, password, name, phone);
+                QueryExecution.executeQuery(query);
+
+                query = String.format("INSERT INTO students SELECT (SELECT id FROM users WHERE email = '%s'), ('%s'), (SELECT parent_id FROM parents WHERE parent_id IN (SELECT id FROM users WHERE LOWER(email) = '%s'))", email, grade, parent_email);
+                QueryExecution.executeQuery(query);
+
+                startActivity(homeScreenIntent);
+
             }
         });
 
