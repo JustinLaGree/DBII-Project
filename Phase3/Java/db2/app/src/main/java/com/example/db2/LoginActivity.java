@@ -20,12 +20,13 @@ public class LoginActivity extends AppCompatActivity {
 
     public boolean loginError = false;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final Intent mainIntent = new Intent(this, MainActivity.class);
+        final Intent meetingsAdminIntent = new Intent(this, MeetingsAdminActivity.class);
         final Intent registerParentIntent = new Intent(this, RegisterParentActivity.class);
         final Intent registerStudentIntent = new Intent(this, RegisterStudentActivity.class);
 
@@ -33,8 +34,24 @@ public class LoginActivity extends AppCompatActivity {
         final EditText textBox_email = findViewById(R.id.textBox_email);
         final EditText textBox_password = findViewById(R.id.textBox_password);
 
-        if (UserSession.getInstance() != null){
-            startActivity(mainIntent);
+        switch (UserSession.getUserType())
+        {
+            case ADMIN:
+                loginError = false;
+                startActivity(meetingsAdminIntent);
+                break;
+            case PARENT:
+                loginError = false;
+                //TODO: Add parent landing
+                break;
+            case STUDENT:
+                loginError = false;
+                //TODO: Add Student Landing
+                break;
+            case NONE:
+                UserSession.setInstance(null);
+                loginError = true;
+                break;
         }
 
         button_login.setOnClickListener(new View.OnClickListener() {
@@ -51,12 +68,13 @@ public class LoginActivity extends AppCompatActivity {
 
                 ArrayList<User> users = QueryExecution.getResponse(User.class);
 
-                if (users != null && users.size() >= 1) {
+                if (users != null && users.size() >= 1)
+                {
                     UserSession.setInstance(users.get(0));
-                    startActivity(mainIntent);
                 }
 
-                loginError = (UserSession.getInstance() == null);
+                finish();
+                startActivity(getIntent());
             }
         });
 
@@ -77,7 +95,5 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(registerStudentIntent);
             }
         });
-
-
     }
 }

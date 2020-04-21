@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.example.db2.helpers.UserSession;
 
-public class MainActivity extends BaseLogoutActivity {
+public class MeetingsAdminActivity extends BaseLogoutActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

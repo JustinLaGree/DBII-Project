@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class UserSession {
     private static User instance;
-    private static UserType userType;
+    private static UserType userType = UserType.NONE;
 
     public static User getInstance()
     {
