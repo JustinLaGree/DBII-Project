@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.db2.helpers.QueryExecution;
 import com.example.db2.helpers.UserSession;
@@ -17,7 +18,7 @@ public class MeetingsAdminActivity extends BaseLogoutActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_meetings_admin);
         super.onCreate(savedInstanceState);
 
         final TextView welcome_text = findViewById(R.id.welcome_text);
