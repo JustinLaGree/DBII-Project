@@ -21,10 +21,6 @@ public class LandingStudentActivity extends BaseLogoutActivity {
         setContentView(R.layout.activity_landing_student);
         super.onCreate(savedInstanceState);
 
-        final TextView welcome_text = findViewById(R.id.textView_welcomeStudent);
-        String welcomeStr = String.format("Welcome, %s!", UserSession.getInstance().name);
-        welcome_text.setText(welcomeStr);
-
         final Button enrollasmentor = findViewById(R.id.button_enrollasmentor);
         final Button enrollasmentee = findViewById(R.id.button_enrollasmentee);
         final Button viewenrolledmeetings = findViewById(R.id.button_viewenrolledmeetings);
