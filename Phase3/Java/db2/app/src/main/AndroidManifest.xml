@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LandingParentActivity"></activity>
+        <activity android:name=".EditStudentAccountActivity"></activity>
+        <activity android:name=".ViewEnrolledMeetingsActivity" />
+        <activity android:name=".EnrollMenteeStudentActivity" />
+        <activity android:name=".EnrollMentorStudentActivity" />
+        <activity android:name=".LandingParentActivity" />
         <activity android:name=".LandingStudentActivity" />
         <activity android:name=".MeetingsAdminActivity" />
         <activity android:name=".RegisterStudentActivity" />
