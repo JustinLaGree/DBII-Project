@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
         final Intent meetingsAdminIntent = new Intent(this, MeetingsAdminActivity.class);
         final Intent registerParentIntent = new Intent(this, RegisterParentActivity.class);
         final Intent registerStudentIntent = new Intent(this, RegisterStudentActivity.class);
+        final Intent landingStudentIntent = new Intent(this, LandingStudentActivity.class);
+        final Intent landingParentIntent = new Intent(this, LandingParentActivity.class);
 
         final Button button_login = findViewById(R.id.button_login);
         final EditText textBox_email = findViewById(R.id.textBox_email);
@@ -43,10 +45,12 @@ public class LoginActivity extends AppCompatActivity {
             case PARENT:
                 loginError = false;
                 //TODO: Add parent landing
+                startActivity(landingParentIntent);
                 break;
             case STUDENT:
                 loginError = false;
                 //TODO: Add Student Landing
+                startActivity(landingStudentIntent);
                 break;
             case NONE:
                 UserSession.setInstance(null);
