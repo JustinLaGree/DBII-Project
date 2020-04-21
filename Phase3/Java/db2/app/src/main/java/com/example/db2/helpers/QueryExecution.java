@@ -18,7 +18,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -72,7 +71,7 @@ public class QueryExecution {
         QueryExecution.rawResponse = response.toString();
     }
 
-    public static <T> ArrayList<T> getResponse(Class<T> type){
+    public static <T> List<T> getResponse(Class<T> type){
         ObjectMapper mapper = new ObjectMapper();
         TypeFactory factory = mapper.getTypeFactory();
         CollectionType listType = factory.constructCollectionType(List.class, type);

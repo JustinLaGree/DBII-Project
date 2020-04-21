@@ -9,7 +9,7 @@ import com.example.db2.models.Parent;
 import com.example.db2.models.Student;
 import com.example.db2.models.User;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class UserSession {
     private static User instance;
@@ -43,7 +43,7 @@ public class UserSession {
         String query = String.format("SELECT * FROM admins WHERE admin_id=%d", instance.id);
         QueryExecution.executeQuery(query);
 
-        ArrayList<Admin> admins = QueryExecution.getResponse(Admin.class);
+        List<Admin> admins = QueryExecution.getResponse(Admin.class);
 
         if (admins != null && admins.size() >= 1)
         {
@@ -53,7 +53,7 @@ public class UserSession {
         query = String.format("SELECT * FROM parents WHERE parent_id=%d", instance.id);
         QueryExecution.executeQuery(query);
 
-        ArrayList<Parent> parents = QueryExecution.getResponse(Parent.class);
+        List<Parent> parents = QueryExecution.getResponse(Parent.class);
 
         if (parents != null && parents.size() >= 1)
         {
@@ -63,7 +63,7 @@ public class UserSession {
         query = String.format("SELECT student_id FROM students WHERE student_id=%d", instance.id);
         QueryExecution.executeQuery(query);
 
-        ArrayList<Student> students = QueryExecution.getResponse(Student.class);
+        List<Student> students = QueryExecution.getResponse(Student.class);
 
         if (students != null && students.size() >= 1)
         {

@@ -14,7 +14,7 @@ import com.example.db2.helpers.QueryExecution;
 import com.example.db2.models.User;
 import com.example.db2.helpers.UserSession;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 QueryExecution.executeQuery(query);
 
-                ArrayList<User> users = QueryExecution.getResponse(User.class);
+                List<User> users = QueryExecution.getResponse(User.class);
 
                 if (users != null && users.size() >= 1)
                 {
