@@ -6,4 +6,5 @@
     <string name="logout_button">Logout</string>
     <string name="email_text_hint">Enter Your Email</string>
     <string name="password_text_hint">Enter Your Password</string>
+    <string name="kebab_character">\u22EE</string>
 </resources>

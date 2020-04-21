@@ -65,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
                 String password = textBox_password.getText().toString();
 
                 String query = String.format("SELECT * from users WHERE LOWER(email)='%s' AND password='%s'", email, password);
-
                 QueryExecution.executeQuery(query);
 
                 List<User> users = QueryExecution.getResponse(User.class);

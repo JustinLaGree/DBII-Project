@@ -1,22 +1,25 @@
 package com.example.db2.adapters;
 
+import android.os.Build;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.db2.R;
 import com.example.db2.models.Meeting;
+import com.example.db2.models.TimeSlot;
 
 import java.util.List;
 
-public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingViewHolder> {
+public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapter.MeetingViewHolder> {
 
     private List<Meeting> meetings;
+    private List<TimeSlot> timeSlots;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -29,13 +32,14 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
         }
     }
 
-    public MeetingAdapter(List<Meeting> meetings) {
+    public MeetingAdminAdapter(List<Meeting> meetings, List<TimeSlot> timeSlots) {
         this.meetings = meetings;
+        this.timeSlots = timeSlots;
     }
 
     @NonNull
     @Override
-    public MeetingAdapter.MeetingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MeetingAdminAdapter.MeetingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // create a new view
         ConstraintLayout v = (ConstraintLayout) LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.partial_meeting_admin_item, parent, false);
@@ -44,18 +48,16 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
         return vh;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onBindViewHolder(@NonNull MeetingAdapter.MeetingViewHolder holder, int position) {
-        try {
-            Meeting meeting = meetings.get(position);
+    public void onBindViewHolder(@NonNull MeetingAdminAdapter.MeetingViewHolder holder, int position) {
+        Meeting meeting = meetings.get(position);
+        TimeSlot timeSlot = timeSlots.stream()
+                .filter(ts -> ts.time_slot_id == meeting.time_slot_id)
+                .findFirst().get();
 
-            TextView idText = (TextView) holder.constraintLayout.getViewById(R.id.id_textView);
-            idText.setText(Integer.toString(meeting.meet_id));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        TextView idText = (TextView) holder.constraintLayout.getViewById(R.id.id_textView);
+        idText.setText(Integer.toString(meeting.meet_id));
     }
 
     @Override

@@ -6,9 +6,10 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.db2.adapters.MeetingAdapter;
+import com.example.db2.adapters.MeetingAdminAdapter;
 import com.example.db2.helpers.QueryExecution;
 import com.example.db2.models.Meeting;
+import com.example.db2.models.TimeSlot;
 
 import java.util.List;
 
@@ -25,6 +26,11 @@ public class LandingAdminActivity extends BaseLogoutActivity {
 
         List<Meeting> meetings = QueryExecution.getResponse(Meeting.class);
 
+        query = "SELECT * FROM time_slot";
+        QueryExecution.executeQuery(query);
+
+        List<TimeSlot> timeSlots = QueryExecution.getResponse(TimeSlot.class);
+
         final RecyclerView meetingRecyclerView  = findViewById(R.id.meeting_recyclerView);
 
         // use this setting to improve performance if you know that changes
@@ -36,7 +42,7 @@ public class LandingAdminActivity extends BaseLogoutActivity {
         meetingRecyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        MeetingAdapter mAdapter = new MeetingAdapter(meetings);
+        MeetingAdminAdapter mAdapter = new MeetingAdminAdapter(meetings, timeSlots);
         meetingRecyclerView.setAdapter(mAdapter);
     }
 }
