@@ -26,9 +26,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final Intent meetingsAdminIntent = new Intent(this, MeetingsAdminActivity.class);
         final Intent registerParentIntent = new Intent(this, RegisterParentActivity.class);
         final Intent registerStudentIntent = new Intent(this, RegisterStudentActivity.class);
+        final Intent landingAdminIntent = new Intent(this, LandingAdminActivity.class);
         final Intent landingStudentIntent = new Intent(this, LandingStudentActivity.class);
         final Intent landingParentIntent = new Intent(this, LandingParentActivity.class);
 
@@ -40,16 +40,14 @@ public class LoginActivity extends AppCompatActivity {
         {
             case ADMIN:
                 loginError = false;
-                startActivity(meetingsAdminIntent);
+                startActivity(landingAdminIntent);
                 break;
             case PARENT:
                 loginError = false;
-                //TODO: Add parent landing
                 startActivity(landingParentIntent);
                 break;
             case STUDENT:
                 loginError = false;
-                //TODO: Add Student Landing
                 startActivity(landingStudentIntent);
                 break;
             case NONE:

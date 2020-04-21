@@ -12,12 +12,12 @@ import com.example.db2.models.Meeting;
 
 import java.util.List;
 
-public class MeetingsAdminActivity extends BaseLogoutActivity {
+public class LandingAdminActivity extends BaseLogoutActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_meetings_admin);
+        setContentView(R.layout.activity_landing_admin);
         super.onCreate(savedInstanceState);
 
         String query = "SELECT * FROM meetings ORDER BY date ASC";

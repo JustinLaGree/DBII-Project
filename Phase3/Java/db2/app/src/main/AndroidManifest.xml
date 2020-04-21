@@ -18,7 +18,7 @@
         <activity android:name=".EnrollMentorStudentActivity" />
         <activity android:name=".LandingParentActivity" />
         <activity android:name=".LandingStudentActivity" />
-        <activity android:name=".MeetingsAdminActivity" />
+        <activity android:name=".LandingAdminActivity" />
         <activity android:name=".RegisterStudentActivity" />
         <activity android:name=".RegisterParentActivity" />
         <activity android:name=".LoginActivity">
