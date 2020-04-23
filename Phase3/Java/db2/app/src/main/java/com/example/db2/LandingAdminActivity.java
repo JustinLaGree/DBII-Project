@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.db2.adapters.MeetingAdminAdapter;
 import com.example.db2.helpers.QueryExecution;
+import com.example.db2.models.Enroll;
+import com.example.db2.models.Enroll2;
+import com.example.db2.models.Group;
 import com.example.db2.models.Meeting;
 import com.example.db2.models.TimeSlot;
 
@@ -31,7 +34,22 @@ public class LandingAdminActivity extends BaseLogoutActivity {
 
         List<TimeSlot> timeSlots = QueryExecution.getResponse(TimeSlot.class);
 
-        final RecyclerView meetingRecyclerView  = findViewById(R.id.meeting_recyclerView);
+        query = "SELECT * FROM groups";
+        QueryExecution.executeQuery(query);
+
+        List<Group> groups = QueryExecution.getResponse(Group.class);
+
+        query = "SELECT * FROM enroll";
+        QueryExecution.executeQuery(query);
+
+        List<Enroll> enrolls = QueryExecution.getResponse(Enroll.class);
+
+        query = "SELECT * FROM enroll2";
+        QueryExecution.executeQuery(query);
+
+        List<Enroll2> enroll2s = QueryExecution.getResponse(Enroll2.class);
+
+        final RecyclerView meetingRecyclerView = findViewById(R.id.meeting_recyclerView);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -42,7 +60,7 @@ public class LandingAdminActivity extends BaseLogoutActivity {
         meetingRecyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        MeetingAdminAdapter mAdapter = new MeetingAdminAdapter(meetings, timeSlots);
+        MeetingAdminAdapter mAdapter = new MeetingAdminAdapter(meetings, timeSlots, groups, enrolls, enroll2s);
         meetingRecyclerView.setAdapter(mAdapter);
     }
 }
