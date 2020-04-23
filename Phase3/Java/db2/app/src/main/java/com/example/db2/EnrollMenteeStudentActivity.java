@@ -31,6 +31,8 @@ public class EnrollMenteeStudentActivity extends BaseLogoutActivity {
     String enrollment[];
     String times[];
     String meeting_ids[];
+    int enroll_state = 1;
+    int userID = UserSession.getInstance().id;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -40,16 +42,13 @@ public class EnrollMenteeStudentActivity extends BaseLogoutActivity {
 
         final RecyclerView recyclerview_enrollAsMentee = findViewById(R.id.recyclerview_enrollAsMentee);
 
-
-
-        enrollment = new String[]{"1", "3", "4", "3", "3", "3", "3", "3"};
-        times = new String[]{"6:00", "8:00", "9:00", "9:00", "9:00", "9:00", "9:00", "9:00"};
-
         populateArrays();
 
-        MeetingEnrollAdapter meetingEnrollAdapter = new MeetingEnrollAdapter(this, grades, meeting_names, dates, enrollment, times);
+        MeetingEnrollAdapter meetingEnrollAdapter = new MeetingEnrollAdapter(this, grades, meeting_names, dates, enrollment, times, meeting_ids, enroll_state, userID);
         recyclerview_enrollAsMentee.setAdapter(meetingEnrollAdapter);
         recyclerview_enrollAsMentee.setLayoutManager(new LinearLayoutManager(this));
+
+
 
 
 
@@ -111,14 +110,6 @@ public class EnrollMenteeStudentActivity extends BaseLogoutActivity {
             List<Enroll> capacity = QueryExecution.getResponse(Enroll.class);
             enrollment[i] = String.valueOf(capacity.size());
         }
-
-
-
-
-
-
-
-
 
 
     }
