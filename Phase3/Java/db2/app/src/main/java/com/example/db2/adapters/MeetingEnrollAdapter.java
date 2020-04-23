@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.db2.EnrollMenteeStudentActivity;
 import com.example.db2.EnrollMentorStudentActivity;
+import com.example.db2.MeetingInfoActivity;
 import com.example.db2.R;
 import com.example.db2.ViewEnrolledMeetingsActivity;
 import com.example.db2.helpers.QueryExecution;
@@ -28,7 +29,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
     String times[];
     String meeting_ids[];
     Context ct;
-    int enroll_state;
+    int enroll_state; // 1=Mentee 2=Mentor 3=View
     int userID;
 
 
@@ -59,15 +60,23 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         holder.timeText.setText(times[position] + " PM");
         holder.dateText.setText(dates[position]);
         holder.capacityText.setText(enrollment[position] + "/6");
-        if(enroll_state == 1 || enroll_state == 2) {
+        if(enroll_state == 1) {
             holder.enrollButton.setText("Enroll");
-            holder.viewMeetingButton.setEnabled(false);
-            holder.viewMeetingButton.setAlpha(0);
+            holder.vieworbulkMeetingButton.setEnabled(true);
+            holder.vieworbulkMeetingButton.setAlpha(1);
+            holder.vieworbulkMeetingButton.setText("Bulk\n Enroll");
         }
-        else {
+        else if (enroll_state == 2)
+        {
+            holder.enrollButton.setText("Enroll");
+            holder.vieworbulkMeetingButton.setEnabled(false);
+            holder.vieworbulkMeetingButton.setAlpha(0);
+        }
+        else if (enroll_state == 3) {
             holder.enrollButton.setText("Unenroll");
-            holder.viewMeetingButton.setEnabled(true);
-            holder.viewMeetingButton.setAlpha(1);
+            holder.vieworbulkMeetingButton.setEnabled(true);
+            holder.vieworbulkMeetingButton.setAlpha(1);
+            holder.vieworbulkMeetingButton.setText("View");
         }
 
         holder.enrollButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +84,14 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
             @Override
             public void onClick(View v) {
                 verifyAndEnroll(enroll_state, position);
+            }
+        });
+
+        holder.vieworbulkMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                vieworbulkMeeting(enroll_state, position);
             }
         });
     }
@@ -91,7 +108,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         TextView dateText;
         TextView capacityText;
         Button enrollButton;
-        Button viewMeetingButton;
+        Button vieworbulkMeetingButton;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -101,7 +118,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
             dateText = itemView.findViewById(R.id.textView_daterow);
             capacityText = itemView.findViewById(R.id.textView_capacityrow);
             enrollButton = itemView.findViewById(R.id.button_enrollrow);
-            viewMeetingButton = itemView.findViewById(R.id.button_viewMeeting);
+            vieworbulkMeetingButton = itemView.findViewById(R.id.button_vieworbulkMeeting);
         }
     }
 
@@ -136,9 +153,24 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
             QueryExecution.executeQuery(query);
             ct.startActivity(viewEnrolledMeetingsActivity);
         }
-        else if(enroll_state == 4) //bulk enroll
-        {
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void vieworbulkMeeting(int enroll_state, int position)
+    {
+        String query;
+        if(enroll_state == 1)
+        {
+            final Intent enrollMenteeStudentActivity = new Intent(ct, EnrollMenteeStudentActivity.class);
+            query = String.format("INSERT INTO enroll SELECT meet_id, '%s' FROM meetings  WHERE group_id = '%s' AND meet_name = '%s'", userID, grades[position], meeting_names[position]);
+            QueryExecution.executeQuery(query);
+            ct.startActivity(enrollMenteeStudentActivity);
+        }
+        else if (enroll_state == 3)
+        {
+            final Intent meetingInfoIntent = new Intent(ct, MeetingInfoActivity.class);
+            ct.startActivity(meetingInfoIntent);
         }
     }
 }
