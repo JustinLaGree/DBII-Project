@@ -59,7 +59,6 @@ public class QueryExecution {
                 while ((responseLine = br.readLine()) != null) {
                     response.append(responseLine.trim());
                 }
-                System.out.println(response.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
