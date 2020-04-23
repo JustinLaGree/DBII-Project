@@ -3,6 +3,7 @@
     <string name="login_button">Login</string>
     <string name="register_as_student_button">Register as Student</string>
     <string name="register_as_parent_button">Register as Parent</string>
+    <string name="back_button">Back</string>
     <string name="logout_button">Logout</string>
     <string name="enroll_button">Enroll</string>
     <string name="materials_button">Materials</string>

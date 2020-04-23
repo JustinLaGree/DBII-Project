@@ -1,10 +1,8 @@
 package com.example.db2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class MeetingInfoActivity extends BaseLogoutActivity {
+public class MeetingInfoActivity extends BaseLogoutBackActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

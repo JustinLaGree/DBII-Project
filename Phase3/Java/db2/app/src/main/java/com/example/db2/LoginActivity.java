@@ -27,7 +27,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         final Intent registerParentIntent = new Intent(this, RegisterParentActivity.class);
+        registerParentIntent.putExtra("BACK_ACTIVITY", this.getClass().getName());
         final Intent registerStudentIntent = new Intent(this, RegisterStudentActivity.class);
+        registerStudentIntent.putExtra("BACK_ACTIVITY", this.getClass().getName());
         final Intent landingAdminIntent = new Intent(this, LandingAdminActivity.class);
         final Intent landingStudentIntent = new Intent(this, LandingStudentActivity.class);
         final Intent landingParentIntent = new Intent(this, LandingParentActivity.class);

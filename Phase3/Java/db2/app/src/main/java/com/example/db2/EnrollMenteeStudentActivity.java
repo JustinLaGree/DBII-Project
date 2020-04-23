@@ -1,7 +1,6 @@
 package com.example.db2;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,7 +12,6 @@ import com.example.db2.helpers.QueryExecution;
 import com.example.db2.helpers.UserSession;
 import com.example.db2.models.Enroll;
 import com.example.db2.models.Meeting;
-import com.example.db2.models.Student;
 import com.example.db2.models.TimeSlot;
 
 import java.text.DateFormat;
@@ -23,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.TimeZone;
 
-public class EnrollMenteeStudentActivity extends BaseLogoutActivity {
+public class EnrollMenteeStudentActivity extends BaseLogoutBackActivity {
 
     String grades[];
     String meeting_names[];

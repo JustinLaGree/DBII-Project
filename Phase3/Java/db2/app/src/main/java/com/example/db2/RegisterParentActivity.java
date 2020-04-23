@@ -12,12 +12,12 @@ import android.widget.EditText;
 
 import com.example.db2.helpers.QueryExecution;
 
-public class RegisterParentActivity extends AppCompatActivity {
+public class RegisterParentActivity extends BaseBackOnlyActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_parent);
+        super.onCreate(savedInstanceState);
 
         final EditText editText_RegParentFullName = findViewById(R.id.editText_RegParentFullName);
         final EditText editText_RegParentEmail = findViewById(R.id.editText_RegParentEmail);
@@ -26,7 +26,6 @@ public class RegisterParentActivity extends AppCompatActivity {
 
         final Intent homeScreenIntent = new Intent(this, LoginActivity.class);
 
-        final Button button_RegParentBack = findViewById(R.id.button_regParentBack);
         final Button button_RegParentSubmit = findViewById(R.id.button_RegParentSubmit);
 
         button_RegParentSubmit.setOnClickListener(new View.OnClickListener() {
@@ -45,14 +44,6 @@ public class RegisterParentActivity extends AppCompatActivity {
                 query = String.format("INSERT INTO parents (parent_id) SELECT id FROM users WHERE email = '%s'", email);
                 QueryExecution.executeQuery(query);
 
-                startActivity(homeScreenIntent);
-
-            }
-        });
-
-        button_RegParentBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 startActivity(homeScreenIntent);
             }
         });

@@ -1,7 +1,6 @@
 package com.example.db2;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -12,14 +11,12 @@ import android.widget.EditText;
 
 import com.example.db2.helpers.QueryExecution;
 import com.example.db2.helpers.UserSession;
-import com.example.db2.helpers.UserType;
-import com.example.db2.models.Admin;
 import com.example.db2.models.Student;
 import com.example.db2.models.User;
 
 import java.util.List;
 
-public class EditStudentAccountActivity extends BaseLogoutActivity {
+public class EditStudentAccountActivity extends BaseLogoutBackActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {

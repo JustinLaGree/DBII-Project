@@ -12,7 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.db2.helpers.UserSession;
 
-public class BaseLogoutActivity extends AppCompatActivity {
+public class BaseLogoutOnlyActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,10 +21,17 @@ public class BaseLogoutActivity extends AppCompatActivity {
         final Intent loginIntent = new Intent(this, LoginActivity.class);
 
         final Button logout_button = findViewById(R.id.button_logout);
+        final Button back_button = findViewById(R.id.back_button);
+
+        back_button.setEnabled(false);
+        back_button.setVisibility(View.INVISIBLE);
 
         final TextView welcome_text = findViewById(R.id.welcome_textView);
-        String welcomeStr = String.format("Welcome, %s!", UserSession.getInstance().name);
-        welcome_text.setText(welcomeStr);
+        if (UserSession.getInstance() != null)
+        {
+            String welcomeStr = String.format("Welcome, %s!", UserSession.getInstance().name);
+            welcome_text.setText(welcomeStr);
+        }
 
         logout_button.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)

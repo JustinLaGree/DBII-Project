@@ -1,15 +1,11 @@
 package com.example.db2;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.TextView;
 
-import com.example.db2.helpers.UserSession;
-
-public class LandingParentActivity extends BaseLogoutActivity {
+public class LandingParentActivity extends BaseLogoutOnlyActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
