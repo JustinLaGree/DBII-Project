@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.db2.EnrollMenteeStudentActivity;
 import com.example.db2.EnrollMentorStudentActivity;
 import com.example.db2.R;
+import com.example.db2.ViewEnrolledMeetingsActivity;
 import com.example.db2.helpers.QueryExecution;
 
 public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdapter.MyViewHolder> {
@@ -58,9 +59,16 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         holder.timeText.setText(times[position] + " PM");
         holder.dateText.setText(dates[position]);
         holder.capacityText.setText(enrollment[position] + "/6");
-        if(enroll_state == 1 || enroll_state == 2)
-        holder.enrollButton.setText("Enroll");
-        else holder.enrollButton.setText("Unenroll");
+        if(enroll_state == 1 || enroll_state == 2) {
+            holder.enrollButton.setText("Enroll");
+            holder.viewMeetingButton.setEnabled(false);
+            holder.viewMeetingButton.setAlpha(0);
+        }
+        else {
+            holder.enrollButton.setText("Unenroll");
+            holder.viewMeetingButton.setEnabled(true);
+            holder.viewMeetingButton.setAlpha(1);
+        }
 
         holder.enrollButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -83,6 +91,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         TextView dateText;
         TextView capacityText;
         Button enrollButton;
+        Button viewMeetingButton;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -92,6 +101,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
             dateText = itemView.findViewById(R.id.textView_daterow);
             capacityText = itemView.findViewById(R.id.textView_capacityrow);
             enrollButton = itemView.findViewById(R.id.button_enrollrow);
+            viewMeetingButton = itemView.findViewById(R.id.button_viewMeeting);
         }
     }
 
@@ -117,7 +127,16 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
             QueryExecution.executeQuery(query);
             ct.startActivity(enrollMentorStudentActivity);
         }
-        else if(enroll_state == 3) //enroll in bulk
+        else if(enroll_state == 3) //unenroll
+        {
+            final Intent viewEnrolledMeetingsActivity = new Intent(ct, ViewEnrolledMeetingsActivity.class);
+            query = String.format("DELETE FROM enroll WHERE meet_id = '%s' AND mentee_id = '%s'", meeting_ids[position], userID);
+            QueryExecution.executeQuery(query);
+            query = String.format("DELETE FROM enroll2 WHERE meet_id = '%s' AND mentor_id = '%s'", meeting_ids[position], userID);
+            QueryExecution.executeQuery(query);
+            ct.startActivity(viewEnrolledMeetingsActivity);
+        }
+        else if(enroll_state == 4) //bulk enroll
         {
 
         }

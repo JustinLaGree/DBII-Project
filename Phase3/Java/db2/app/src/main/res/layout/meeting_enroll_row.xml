@@ -24,8 +24,8 @@
                 android:id="@+id/textView_daterow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:text="2020-08-08"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,8 +35,8 @@
                 android:id="@+id/textView_grademeetingrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:text="9th Grade Science"
                 android:textSize="24sp"
@@ -48,10 +48,10 @@
                 android:id="@+id/button_enrollrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
                 android:text="Enroll"
-                android:textSize="24sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -76,6 +76,17 @@
                 android:text="7:00"
                 app:layout_constraintEnd_toEndOf="@+id/textView_grademeetingrow"
                 app:layout_constraintTop_toBottomOf="@+id/textView_grademeetingrow" />
+
+            <Button
+                android:id="@+id/button_viewMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:text="View"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_enrollrow"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
