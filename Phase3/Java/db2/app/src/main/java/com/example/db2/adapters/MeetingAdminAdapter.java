@@ -1,5 +1,7 @@
 package com.example.db2.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.db2.EnrollAdminActivity;
 import com.example.db2.R;
 import com.example.db2.helpers.ListHelpers;
 import com.example.db2.models.Enroll;
@@ -26,6 +29,7 @@ import java.util.List;
 
 public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapter.MeetingViewHolder> {
 
+    private Context context;
     private List<Meeting> meetings;
     private List<TimeSlot> timeSlots;
     private List<Group> groups;
@@ -39,14 +43,16 @@ public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapte
     // you provide access to all the views for a data item in a view holder
     public static class MeetingViewHolder extends RecyclerView.ViewHolder {
         public ConstraintLayout constraintLayout;
+
         public MeetingViewHolder(ConstraintLayout cl) {
             super(cl);
             constraintLayout = cl;
         }
     }
 
-    public MeetingAdminAdapter(List<Meeting> meetings, List<TimeSlot> timeSlots, List<Group> groups, List<Enroll> enrolls, List<Enroll2> enroll2s) {
+    public MeetingAdminAdapter(Context context, List<Meeting> meetings, List<TimeSlot> timeSlots, List<Group> groups, List<Enroll> enrolls, List<Enroll2> enroll2s) {
         MeetingAdminAdapter.targetMeeting = null;
+        this.context = context;
         this.meetings = meetings;
         this.timeSlots = timeSlots;
         this.groups = groups;
@@ -59,7 +65,7 @@ public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapte
     public MeetingAdminAdapter.MeetingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // create a new view
         ConstraintLayout cl = (ConstraintLayout) LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.partial_meeting_admin_item, parent, false);
+                .inflate(R.layout.partial_meeting_admin_item, parent, false);
 
         MeetingViewHolder mvh = new MeetingViewHolder(cl);
         return mvh;
@@ -129,13 +135,15 @@ public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapte
         return meetings.size();
     }
 
-    private void viewEnrollAdminActivity(Meeting meeting)
-    {
+    private void viewEnrollAdminActivity(Meeting meeting) {
         MeetingAdminAdapter.targetMeeting = meeting;
+
+        final Intent enrolAdminIntent = new Intent(context, EnrollAdminActivity.class);
+        enrolAdminIntent.putExtra("BACK_ACTIVITY", context.getClass().getName());
+        context.startActivity(enrolAdminIntent);
     }
 
-    private void viewMaterialsAdminActivity(Meeting meeting)
-    {
+    private void viewMaterialsAdminActivity(Meeting meeting) {
         MeetingAdminAdapter.targetMeeting = meeting;
     }
 }

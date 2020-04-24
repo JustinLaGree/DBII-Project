@@ -33,17 +33,17 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
     int userID;
 
 
-    public MeetingEnrollAdapter(Context ct_, String grades_[], String meeting_names_[], String dates_[], String enrollment_[], String times_[], String meeting_ids_[], int enroll_state_, int userID_)
+    public MeetingEnrollAdapter(Context ct, String grades[], String meeting_names[], String dates[], String enrollment[], String times[], String meeting_ids[], int enroll_state, int userID)
     {
-        ct = ct_;
-        grades = grades_;
-        meeting_names = meeting_names_;
-        dates = dates_;
-        enrollment = enrollment_;
-        times = times_;
-        meeting_ids = meeting_ids_;
-        enroll_state = enroll_state_;
-        userID = userID_;
+        this.ct = ct;
+        this.grades = grades;
+        this.meeting_names = meeting_names;
+        this.dates = dates;
+        this.enrollment = enrollment;
+        this.times = times;
+        this.meeting_ids = meeting_ids;
+        this.enroll_state = enroll_state;
+        this.userID = userID;
     }
 
     @NonNull

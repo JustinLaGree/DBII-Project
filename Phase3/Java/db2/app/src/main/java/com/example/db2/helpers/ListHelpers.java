@@ -22,4 +22,10 @@ public class ListHelpers {
         return list.stream().filter(lambda)
                 .collect(Collectors.toList());
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static <T> boolean any(List<T> list, Predicate<? super T> lambda)
+    {
+        return list.stream().anyMatch(lambda);
+    }
 }

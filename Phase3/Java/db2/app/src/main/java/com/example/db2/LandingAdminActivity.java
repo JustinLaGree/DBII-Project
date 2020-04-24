@@ -21,8 +21,8 @@ public class LandingAdminActivity extends BaseLogoutOnlyActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_admin);
+        super.onCreate(savedInstanceState);
 
         String query = "SELECT * FROM meetings ORDER BY date ASC";
         QueryExecution.executeQuery(query);
@@ -60,7 +60,7 @@ public class LandingAdminActivity extends BaseLogoutOnlyActivity {
         meetingRecyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        MeetingAdminAdapter mAdapter = new MeetingAdminAdapter(meetings, timeSlots, groups, enrolls, enroll2s);
+        MeetingAdminAdapter mAdapter = new MeetingAdminAdapter(this, meetings, timeSlots, groups, enrolls, enroll2s);
         meetingRecyclerView.setAdapter(mAdapter);
     }
 }
