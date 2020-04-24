@@ -14,6 +14,7 @@ public class BaseLogoutBackActivity extends BaseLogoutOnlyActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        final Intent loginIntent = new Intent(this, LoginActivity.class);
         Intent backIntent = null;
 
         final Button back_button = findViewById(R.id.back_button);
@@ -24,7 +25,9 @@ public class BaseLogoutBackActivity extends BaseLogoutOnlyActivity {
         try {
             String className = this.getIntent().getStringExtra("BACK_ACTIVITY");
             Class<?> clazz = Class.forName(className);
-            backIntent = new Intent(this, clazz);
+            if (clazz != null && clazz != this.getClass()) {
+                backIntent = new Intent(this, clazz);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,7 +39,12 @@ public class BaseLogoutBackActivity extends BaseLogoutOnlyActivity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                startActivity(finalBackIntent);
+                if (finalBackIntent != null) {
+                    startActivity(finalBackIntent);
+                }
+                else {
+                    startActivity(loginIntent);
+                }
             }
         });
     }
