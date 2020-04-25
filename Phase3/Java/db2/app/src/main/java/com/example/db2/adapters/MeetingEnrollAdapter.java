@@ -20,9 +20,11 @@ import com.example.db2.EnrollMentorStudentActivity;
 import com.example.db2.MeetingInfoActivity;
 import com.example.db2.R;
 import com.example.db2.ViewEnrolledMeetingsActivity;
+import com.example.db2.ViewMaterialsActivity;
 import com.example.db2.helpers.QueryExecution;
 import com.example.db2.helpers.UserSession;
 import com.example.db2.models.Enroll2;
+import com.example.db2.models.Meeting;
 
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
     int userID;
     String query;
 
-
+    public static int targetMeetingId;
 
     public MeetingEnrollAdapter(Context ct, String grades[], String meeting_names[], String dates[], String enrollment[], String times[], String meeting_ids[], int enroll_state, int userID)
     {
@@ -218,7 +220,8 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
                 builder.setNegativeButton("View Meeting Materials",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                viewMaterials(position);
+                                targetMeetingId = Integer.parseInt(meeting_ids[position]);
+                                viewMaterials();
                                 dialog.cancel();
                             }
                         });
@@ -226,7 +229,8 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
             }
             else
             {
-                viewMaterials(position);
+                targetMeetingId = Integer.parseInt(meeting_ids[position]);
+                viewMaterials();
             }
 
 
@@ -245,12 +249,10 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
 
     /*Justin, you can write your code here. I've passed the position and as a parameter
         and sent the meeting ID with the intent. You just have to retrieve it in the materials activity*/
-    void viewMaterials(int position)
+    void viewMaterials()
     {
-        /*
-        final Intent viewMaterialsIntent = new Intent(ct, viewMaterialsActivity.class);
-        viewMaterialsIntent.putExtra("meetingID", meeting_ids[position]);
-        */
-
+        final Intent viewMaterialsIntent = new Intent(ct, ViewMaterialsActivity.class);
+        viewMaterialsIntent.putExtra("BACK_ACTIVITY", ct.getClass().getName());
+        ct.startActivity(viewMaterialsIntent);
     }
 }
