@@ -1,6 +1,8 @@
 package com.example.db2.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -31,6 +33,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
     Context ct;
     int enroll_state; // 1=Mentee 2=Mentor 3=View
     int userID;
+    String query;
 
 
     public MeetingEnrollAdapter(Context ct, String grades[], String meeting_names[], String dates[], String enrollment[], String times[], String meeting_ids[], int enroll_state, int userID)
@@ -125,7 +128,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void verifyAndEnroll(int enroll_state, int position)
     {
-        String query;
+
         if(enroll_state == 1) //enroll as mentee
         {
             final Intent enrollMenteeStudentActivity = new Intent(ct, EnrollMenteeStudentActivity.class);
@@ -147,11 +150,36 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         else if(enroll_state == 3) //unenroll
         {
             final Intent viewEnrolledMeetingsActivity = new Intent(ct, ViewEnrolledMeetingsActivity.class);
-            query = String.format("DELETE FROM enroll WHERE meet_id = '%s' AND mentee_id = '%s'", meeting_ids[position], userID);
-            QueryExecution.executeQuery(query);
-            query = String.format("DELETE FROM enroll2 WHERE meet_id = '%s' AND mentor_id = '%s'", meeting_ids[position], userID);
-            QueryExecution.executeQuery(query);
-            ct.startActivity(viewEnrolledMeetingsActivity);
+            AlertDialog.Builder builder = new AlertDialog.Builder(ct);
+            builder.setTitle("How would you like to unenroll?");
+
+            builder.setPositiveButton("Unenroll in Bulk",
+                    new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            query = String.format("DELETE FROM enroll WHERE mentee_id = '%s' AND meet_id IN (SELECT meet_id FROM meetings WHERE meet_name = '%s' AND group_id = '%s')", userID, meeting_names[position], grades[position]);
+                            QueryExecution.executeQuery(query);
+                            ct.startActivity(viewEnrolledMeetingsActivity);
+                            dialog.cancel();
+                        }
+                    });
+            builder.setNegativeButton("Unenroll Individually",
+                    new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+
+                            query = String.format("DELETE FROM enroll WHERE meet_id = '%s' AND mentee_id = '%s'", meeting_ids[position], userID);
+                            QueryExecution.executeQuery(query);
+                            query = String.format("DELETE FROM enroll2 WHERE meet_id = '%s' AND mentor_id = '%s'", meeting_ids[position], userID);
+                            QueryExecution.executeQuery(query);
+                            ct.startActivity(viewEnrolledMeetingsActivity);
+                            dialog.cancel();
+                        }
+                    });
+            builder.create().show();
+
         }
 
     }
@@ -170,6 +198,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         else if (enroll_state == 3)
         {
             final Intent meetingInfoIntent = new Intent(ct, MeetingInfoActivity.class);
+            meetingInfoIntent.putExtra("meetingID", meeting_ids[position]);
             ct.startActivity(meetingInfoIntent);
         }
     }
