@@ -21,6 +21,10 @@ import com.example.db2.MeetingInfoActivity;
 import com.example.db2.R;
 import com.example.db2.ViewEnrolledMeetingsActivity;
 import com.example.db2.helpers.QueryExecution;
+import com.example.db2.helpers.UserSession;
+import com.example.db2.models.Enroll2;
+
+import java.util.List;
 
 public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdapter.MyViewHolder> {
 
@@ -34,6 +38,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
     int enroll_state; // 1=Mentee 2=Mentor 3=View
     int userID;
     String query;
+
 
 
     public MeetingEnrollAdapter(Context ct, String grades[], String meeting_names[], String dates[], String enrollment[], String times[], String meeting_ids[], int enroll_state, int userID)
@@ -197,9 +202,55 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         }
         else if (enroll_state == 3)
         {
-            final Intent meetingInfoIntent = new Intent(ct, MeetingInfoActivity.class);
-            meetingInfoIntent.putExtra("meetingID", meeting_ids[position]);
-            ct.startActivity(meetingInfoIntent);
+
+            if(isMentor(meeting_ids[position])) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ct);
+                builder.setTitle("What would you like to view?");
+                builder.setPositiveButton("View Participants",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                final Intent meetingInfoIntent = new Intent(ct, MeetingInfoActivity.class);
+                                meetingInfoIntent.putExtra("meetingID", meeting_ids[position]);
+                                ct.startActivity(meetingInfoIntent);
+                                dialog.cancel();
+                            }
+                        });
+                builder.setNegativeButton("View Meeting Materials",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                viewMaterials(position);
+                                dialog.cancel();
+                            }
+                        });
+                builder.create().show();
+            }
+            else
+            {
+                viewMaterials(position);
+            }
+
+
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    boolean isMentor(String meetingID)
+    {
+        String query = String.format("SELECT * FROM enroll2 WHERE mentor_id = '%s' AND meet_id = '%s'", UserSession.getInstance().id, meetingID);
+        QueryExecution.executeQuery(query);
+        List<Enroll2> enroll2s = QueryExecution.getResponse(Enroll2.class);
+        if(enroll2s.size() > 0) return true;
+        else return false;
+    }
+
+    /*Justin, you can write your code here. I've passed the position and as a parameter
+        and sent the meeting ID with the intent. You just have to retrieve it in the materials activity*/
+    void viewMaterials(int position)
+    {
+        /*
+        final Intent viewMaterialsIntent = new Intent(ct, viewMaterialsActivity.class);
+        viewMaterialsIntent.putExtra("meetingID", meeting_ids[position]);
+        */
+
     }
 }

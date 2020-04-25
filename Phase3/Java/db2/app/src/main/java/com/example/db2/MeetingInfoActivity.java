@@ -7,21 +7,20 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.db2.adapters.MeetingEnrollAdapter;
 import com.example.db2.adapters.MeetingInfoAdapter;
 import com.example.db2.helpers.QueryExecution;
 import com.example.db2.helpers.UserSession;
-import com.example.db2.models.Enroll;
 import com.example.db2.models.Enroll2;
-import com.example.db2.models.TimeSlot;
 import com.example.db2.models.User;
 
 import java.util.List;
 
 public class MeetingInfoActivity extends BaseLogoutBackActivity {
 
-    String names[];
-    String emails[];
+    String names_of_mentors[];
+    String emails_of_mentors[];
+    String names_of_mentees[];
+    String emails_of_mentees[];
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -36,13 +35,17 @@ public class MeetingInfoActivity extends BaseLogoutBackActivity {
         if(isMentor)
         {
 
-            final RecyclerView recyclerview_enrolledParticipants = findViewById(R.id.recyclerview_enrolledParticipants);
+            final RecyclerView recyclerview_enrolledParticipants = findViewById(R.id.recyclerview_menteeParticipants);
+            final RecyclerView recyclerview_enrolledMentors = findViewById(R.id.recyclerview_mentorParticipants);
 
             populateArrays(meetingID);
 
-            MeetingInfoAdapter meetingInfoAdapter = new MeetingInfoAdapter(this, names, emails, isMentor);
+            MeetingInfoAdapter meetingInfoAdapter = new MeetingInfoAdapter(this, names_of_mentees, emails_of_mentees, isMentor);
             recyclerview_enrolledParticipants.setAdapter(meetingInfoAdapter);
             recyclerview_enrolledParticipants.setLayoutManager(new LinearLayoutManager(this));
+            MeetingInfoAdapter meetingInfoAdapter_mentors = new MeetingInfoAdapter(this, names_of_mentors, emails_of_mentors, isMentor);
+            recyclerview_enrolledMentors.setAdapter(meetingInfoAdapter_mentors);
+            recyclerview_enrolledMentors.setLayoutManager(new LinearLayoutManager(this));
         }
 
     }
@@ -60,17 +63,30 @@ public class MeetingInfoActivity extends BaseLogoutBackActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     void populateArrays(String meetingID)
     {
-        String query = String.format("SELECT * FROM users WHERE id IN (SELECT mentee_id FROM enroll WHERE meet_id = '%s') OR id IN (SELECT mentor_id FROM enroll2 WHERE meet_id = '%s')", meetingID, meetingID);
+        String query = String.format("SELECT * FROM users WHERE id IN (SELECT mentee_id FROM enroll WHERE meet_id = '%s')", meetingID);
         QueryExecution.executeQuery(query);
-        List<User> users = QueryExecution.getResponse(User.class);
+        List<User> mentees = QueryExecution.getResponse(User.class);
 
-        names = new String[users.size()];
-        emails = new String[users.size()];
+        names_of_mentees = new String[mentees.size()];
+        emails_of_mentees = new String[mentees.size()];
 
-        for(int i = 0; i < users.size(); i++)
+        for(int i = 0; i < mentees.size(); i++)
         {
-            names[i] = users.get(i).name;
-            emails[i] = users.get(i).email;
+            names_of_mentees[i] = mentees.get(i).name;
+            emails_of_mentees[i] = mentees.get(i).email;
+        }
+
+        query = String.format("SELECT * FROM users WHERE id IN (SELECT mentor_id FROM enroll2 WHERE meet_id = '%s')", meetingID);
+        QueryExecution.executeQuery(query);
+        List<User> mentors = QueryExecution.getResponse(User.class);
+
+        names_of_mentors = new String[mentors.size()];
+        emails_of_mentors = new String[mentors.size()];
+
+        for(int i = 0; i < mentors.size(); i++)
+        {
+            names_of_mentors[i] = mentors.get(i).name;
+            emails_of_mentors[i] = mentors.get(i).email;
         }
     }
 

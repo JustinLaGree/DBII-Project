@@ -10,15 +10,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.db2.EnrollMenteeStudentActivity;
-import com.example.db2.EnrollMentorStudentActivity;
-import com.example.db2.MeetingInfoActivity;
 import com.example.db2.R;
-import com.example.db2.ViewEnrolledMeetingsActivity;
-import com.example.db2.helpers.QueryExecution;
 
 public class MeetingInfoAdapter extends RecyclerView.Adapter<MeetingInfoAdapter.MyViewHolder> {
 
