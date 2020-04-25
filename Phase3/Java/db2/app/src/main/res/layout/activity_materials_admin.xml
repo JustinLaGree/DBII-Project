@@ -10,21 +10,124 @@
         android:id="@+id/include"
         layout="@layout/partial_nav_bar" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/form_cl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include">
+
+        <TextView
+            android:id="@+id/header_textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create a Material"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/title_editText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_textView2" />
+
+        <EditText
+            android:id="@+id/url_editText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="URL (https://... or http://...)"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_editText" />
+
+        <EditText
+            android:id="@+id/author_editText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Author"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/url_editText" />
+
+        <EditText
+            android:id="@+id/notes_editText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Notes"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/author_editText" />
+
+        <EditText
+            android:id="@+id/type_editText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Type"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@id/notes_editText"
+            app:layout_constraintTop_toBottomOf="@id/notes_editText" />
+
+        <EditText
+            android:id="@+id/date_editText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:contentDescription="YYYY-MM-dd"
+            android:ems="10"
+            android:hint="Assigned Date"
+            android:inputType="date"
+            app:layout_constraintStart_toEndOf="@id/type_editText"
+            app:layout_constraintTop_toBottomOf="@id/notes_editText" />
+
+        <Button
+            android:id="@+id/create_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Create"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/type_editText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/header_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/materials_button"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include" />
+        app:layout_constraintTop_toBottomOf="@id/form_cl" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/materials_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_textView" />
+        app:layout_constraintTop_toBottomOf="@id/header_textView">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

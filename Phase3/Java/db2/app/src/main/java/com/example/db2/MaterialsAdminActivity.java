@@ -6,16 +6,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.db2.adapters.MaterialAdapter;
 import com.example.db2.adapters.MeetingAdminAdapter;
+import com.example.db2.helpers.ListHelpers;
 import com.example.db2.helpers.QueryExecution;
 import com.example.db2.models.Material;
 import com.example.db2.models.Meeting;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.sql.Date;
 import java.util.List;
 
 public class MaterialsAdminActivity extends BaseLogoutBackActivity {
+
+    private Meeting meeting;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -23,9 +32,62 @@ public class MaterialsAdminActivity extends BaseLogoutBackActivity {
         setContentView(R.layout.activity_materials_admin);
         super.onCreate(savedInstanceState);
 
-        Meeting meeting = MeetingAdminAdapter.targetMeeting;
+        meeting = MeetingAdminAdapter.targetMeeting;
 
-        String query = String.format("SELECT * FROM material WHERE material_id IN (SELECT material_id from assign WHERE meet_id=%d)", meeting.meet_id);
+        //setup list of materials in view
+        setupMaterialsList();
+
+        //get all relevant controls in view
+        EditText titleText = findViewById(R.id.title_editText);
+        EditText urlText = findViewById(R.id.url_editText);
+        EditText authorText = findViewById(R.id.author_editText);
+        EditText notesText = findViewById(R.id.notes_editText);
+        EditText typeText = findViewById(R.id.type_editText);
+        EditText dateText = findViewById(R.id.date_editText);
+        Button submitButton = findViewById(R.id.create_button);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                //call register parent function
+                String title = titleText.getText().toString();
+
+                String url = null;
+                try {
+                    url = new URL(urlText.getText().toString()).toString();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                    return;
+                }
+                String author = authorText.getText().toString();
+                String notes = notesText.getText().toString();
+                String type = typeText.getText().toString();
+
+                String dateStr = dateText.getText().toString();
+                Date date = Date.valueOf(dateStr);
+
+                String query = String.format("INSERT INTO material (title, author, type, url, assigned_date, notes) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
+                        title, author, type, url, date, notes);
+                QueryExecution.executeQuery(query);
+
+                query = "SELECT MAX(material_id) as material_id FROM material";
+                QueryExecution.executeQuery(query);
+
+                Material insertedMaterial  = QueryExecution.getResponse(Material.class).get(0);
+
+                query = String.format("INSERT INTO assign (meet_id, material_id) VALUES (%d, %d)", meeting.meet_id, insertedMaterial.material_id);
+                QueryExecution.executeQuery(query);
+
+                finish();
+                startActivity(getIntent());
+            }
+        });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void setupMaterialsList(){
+        String query = String.format("SELECT * FROM material WHERE material_id IN (SELECT material_id from assign WHERE meet_id=%d) ORDER BY assigned_date DESC", meeting.meet_id);
         QueryExecution.executeQuery(query);
 
         List<Material> materials = QueryExecution.getResponse(Material.class);
