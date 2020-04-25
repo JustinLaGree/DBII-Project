@@ -16,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.db2.EnrollAdminActivity;
+import com.example.db2.MaterialsAdminActivity;
 import com.example.db2.R;
 import com.example.db2.helpers.ListHelpers;
 import com.example.db2.models.Enroll;
@@ -138,12 +139,16 @@ public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapte
     private void viewEnrollAdminActivity(Meeting meeting) {
         MeetingAdminAdapter.targetMeeting = meeting;
 
-        final Intent enrolAdminIntent = new Intent(context, EnrollAdminActivity.class);
-        enrolAdminIntent.putExtra("BACK_ACTIVITY", context.getClass().getName());
-        context.startActivity(enrolAdminIntent);
+        final Intent enrollAdminIntent = new Intent(context, EnrollAdminActivity.class);
+        enrollAdminIntent.putExtra("BACK_ACTIVITY", context.getClass().getName());
+        context.startActivity(enrollAdminIntent);
     }
 
     private void viewMaterialsAdminActivity(Meeting meeting) {
         MeetingAdminAdapter.targetMeeting = meeting;
+
+        final Intent materialsAdminIntent = new Intent(context, MaterialsAdminActivity.class);
+        materialsAdminIntent.putExtra("BACK_ACTIVITY", context.getClass().getName());
+        context.startActivity(materialsAdminIntent);
     }
 }
