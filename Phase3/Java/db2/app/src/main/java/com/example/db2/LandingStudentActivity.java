@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+//landing page for the student
 public class LandingStudentActivity extends BaseLogoutOnlyActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -17,11 +18,13 @@ public class LandingStudentActivity extends BaseLogoutOnlyActivity {
         setContentView(R.layout.activity_landing_student);
         super.onCreate(savedInstanceState);
 
+        //setup buttons
         final Button enrollasmentor = findViewById(R.id.button_enrollasmentor);
         final Button enrollasmentee = findViewById(R.id.button_enrollasmentee);
         final Button viewenrolledmeetings = findViewById(R.id.button_viewenrolledmeetings);
         final Button editaccount = findViewById(R.id.button_editaccount);
 
+        //possible activity redirects
         final Intent editStudentIntent = new Intent(this, EditStudentAccountActivity.class);
         editStudentIntent.putExtra("BACK_ACTIVITY", this.getClass().getName());
         final Intent enrollAsMentorIntent = new Intent(this, EnrollMentorStudentActivity.class);

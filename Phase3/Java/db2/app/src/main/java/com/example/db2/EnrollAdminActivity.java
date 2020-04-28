@@ -34,6 +34,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+//populate controls with all the users who are allowed to be enrolled in the meeting
 public class EnrollAdminActivity extends BaseLogoutBackActivity {
 
     private Meeting meeting;
@@ -52,20 +53,26 @@ public class EnrollAdminActivity extends BaseLogoutBackActivity {
         setContentView(R.layout.activity_enroll_admin);
         super.onCreate(savedInstanceState);
 
+        //get the meeting that was selected
         this.meeting = MeetingAdminAdapter.targetMeeting;
 
+        //populate ancillary info
         runRelevantQueries();
 
+        //build the header meeting card using the current meeting
         buildMeetingCard();
 
+        //get all relevant textViews
         TextView menteeEnrolledText = findViewById(R.id.mentee_enrolled_textView);
         TextView menteeAvailableText = findViewById(R.id.mentee_available_textView);
         TextView mentorEnrolledText = findViewById(R.id.mentor_enrolled_textView);
         TextView mentorAvailableText = findViewById(R.id.mentor_available_textView);
 
+        //build a list of users who are already enrolled
         List<User> enrolledMentees = ListHelpers.where(users, u -> ListHelpers.any(enrolls, e -> e.mentee_id == u.id));
         List<User> enrolledMentors = ListHelpers.where(users, u -> ListHelpers.any(enroll2s, e -> e.mentor_id == u.id));
 
+        //build a list of users who can be enrolled
         List<User> availableMentees;
         if (enrolledMentees.size() < 6) {
             List<Student> availableStudents = ListHelpers.where(students, s -> !ListHelpers.any(enrolls, e -> e.mentee_id == s.student_id) && s.grade == group.description);
@@ -120,6 +127,7 @@ public class EnrollAdminActivity extends BaseLogoutBackActivity {
             availableMentors = new ArrayList();
         }
 
+        //hide text if any empty
         if (enrolledMentees.isEmpty()){
             menteeEnrolledText.setVisibility(View.INVISIBLE);
         }
@@ -133,12 +141,14 @@ public class EnrollAdminActivity extends BaseLogoutBackActivity {
             mentorAvailableText.setVisibility(View.INVISIBLE);
         }
 
+        //create a separate adapter for all 4 recycle views
         setupUserAdapter(R.id.enrolled_mentee_recyclerView, enrolledMentees, EnrollmentType.MENTEE, false);
         setupUserAdapter(R.id.enrolled_mentor_recyclerView, enrolledMentors, EnrollmentType.MENTOR, false);
         setupUserAdapter(R.id.available_mentee_recyclerView, availableMentees, EnrollmentType.MENTEE, true);
         setupUserAdapter(R.id.available_mentor_recyclerView, availableMentors, EnrollmentType.MENTOR, true);
     }
 
+    //instantiate all ancillary info for the meeting
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void runRelevantQueries() {
         String query = "SELECT * FROM meetings";
@@ -183,6 +193,7 @@ public class EnrollAdminActivity extends BaseLogoutBackActivity {
         this.enroll2s = QueryExecution.getResponse(Enroll2.class);
     }
 
+    //build the meeting card header
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void buildMeetingCard(){
         //get the meeting and corresponding objects related to that particular meeting
@@ -212,6 +223,7 @@ public class EnrollAdminActivity extends BaseLogoutBackActivity {
         numMentorsText.setText(numMentorsStr);
     }
 
+    //setup a user adapter for the given recyclerView
     private void setupUserAdapter(int recyclerViewId, List<User> targetUsers, EnrollmentType enrollmentType, boolean isEnrollable){
         final RecyclerView meetingRecyclerView = findViewById(recyclerViewId);
 

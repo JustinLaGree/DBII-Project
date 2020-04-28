@@ -21,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.TimeZone;
 
+//view the meetings that a student is enrolled in
 public class ViewEnrolledMeetingsActivity extends BaseLogoutBackActivity {
 
     String grades[];
@@ -40,8 +41,10 @@ public class ViewEnrolledMeetingsActivity extends BaseLogoutBackActivity {
 
         final RecyclerView recyclerview_enrolledMeetings = findViewById(R.id.recyclerview_enrolledMeetings);
 
+        //populate all meeting info
         populateArrays();
 
+        //build adapter and recyclerView using meeting info
         MeetingEnrollAdapter meetingEnrollAdapter = new MeetingEnrollAdapter(this, grades, meeting_names, dates, enrollment, times, meeting_ids, enroll_state, userID);
         recyclerview_enrolledMeetings.setAdapter(meetingEnrollAdapter);
         recyclerview_enrolledMeetings.setLayoutManager(new LinearLayoutManager(this));
@@ -52,6 +55,7 @@ public class ViewEnrolledMeetingsActivity extends BaseLogoutBackActivity {
 
     }
 
+    //populate meetings and ancillary info
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     void populateArrays()
     {
@@ -65,6 +69,7 @@ public class ViewEnrolledMeetingsActivity extends BaseLogoutBackActivity {
         }
 
 
+        //get meetings that are available for the student
         String query = String.format("SELECT * FROM meetings WHERE meet_id IN " +
                         "               (SELECT meet_id FROM enroll WHERE mentee_id = '%s') " +
                         "                   OR meet_id IN " +

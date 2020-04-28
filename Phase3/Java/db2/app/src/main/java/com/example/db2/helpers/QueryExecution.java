@@ -21,10 +21,14 @@ import java.net.URL;
 import java.util.List;
 
 
+//Manages the execution of queries with our php api backend
+//Allows the conversion of query results to a generic array of type <T>
 public class QueryExecution {
 
+    //the raw string response from the php server
     public static String rawResponse;
 
+    //execute the query by creating a thread and waiting until the request to server has completed
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void executeQuery(String query)
     {
@@ -34,6 +38,8 @@ public class QueryExecution {
         while (t.isAlive()){}
     }
 
+    //execute the query by passing it to the php API in a post request
+    //read back the response from the server and  insert it into the raw response
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void executeQueryWebRequest(String query) {
         StringBuilder response = new StringBuilder();
@@ -70,6 +76,7 @@ public class QueryExecution {
         QueryExecution.rawResponse = response.toString();
     }
 
+    //take the raw response and convert it to a list of generic type <T>s
     public static <T> List<T> getResponse(Class<T> type){
         ObjectMapper mapper = new ObjectMapper();
         TypeFactory factory = mapper.getTypeFactory();

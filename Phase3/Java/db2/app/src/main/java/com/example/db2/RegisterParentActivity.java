@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.example.db2.helpers.QueryExecution;
 
+//register a parent user
 public class RegisterParentActivity extends BaseBackOnlyActivity {
 
     @Override
@@ -19,15 +20,19 @@ public class RegisterParentActivity extends BaseBackOnlyActivity {
         setContentView(R.layout.activity_register_parent);
         super.onCreate(savedInstanceState);
 
+        //all input fields
         final EditText editText_RegParentFullName = findViewById(R.id.editText_RegParentFullName);
         final EditText editText_RegParentEmail = findViewById(R.id.editText_RegParentEmail);
         final EditText editText_RegParentPassword = findViewById(R.id.editText_RegParentPassword);
         final EditText editText_RegParentPhoneNumber = findViewById(R.id.editText_RegParentPhoneNumber);
 
+        //possible redirect activities
         final Intent homeScreenIntent = new Intent(this, LoginActivity.class);
 
+        //buttons
         final Button button_RegParentSubmit = findViewById(R.id.button_RegParentSubmit);
 
+        //register the parent account
         button_RegParentSubmit.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override

@@ -1,5 +1,6 @@
 package com.example.db2.models;
 
+//De-serialized representation of an 'groups' table row
 public class Group {
     public int group_id;
     public String name;

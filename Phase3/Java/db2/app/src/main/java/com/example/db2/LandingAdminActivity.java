@@ -16,6 +16,7 @@ import com.example.db2.models.TimeSlot;
 
 import java.util.List;
 
+//landing page for the admin account
 public class LandingAdminActivity extends BaseLogoutOnlyActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -24,6 +25,7 @@ public class LandingAdminActivity extends BaseLogoutOnlyActivity {
         setContentView(R.layout.activity_landing_admin);
         super.onCreate(savedInstanceState);
 
+        //get all meetings and ancillary information for the meetings
         String query = "SELECT * FROM meetings ORDER BY date ASC";
         QueryExecution.executeQuery(query);
 

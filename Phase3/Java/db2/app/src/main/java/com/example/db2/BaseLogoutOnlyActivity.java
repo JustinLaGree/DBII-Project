@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.db2.helpers.UserSession;
 
+//only show the logout button and welcome message
 public class BaseLogoutOnlyActivity extends AppCompatActivity {
 
     @Override

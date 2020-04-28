@@ -16,6 +16,7 @@ import com.example.db2.models.Meeting;
 
 import java.util.List;
 
+//view that materials for a given student
 public class ViewMaterialsActivity extends BaseLogoutBackActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

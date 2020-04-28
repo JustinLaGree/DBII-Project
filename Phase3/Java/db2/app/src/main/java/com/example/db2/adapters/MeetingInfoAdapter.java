@@ -17,6 +17,7 @@ import com.example.db2.EditStudentAccountActivity;
 import com.example.db2.LandingParentActivity;
 import com.example.db2.R;
 
+//Adapter to fill recyclerView with dynamic number of objects, based on users input
 public class MeetingInfoAdapter extends RecyclerView.Adapter<MeetingInfoAdapter.MyViewHolder> {
 
     String names[];
@@ -28,6 +29,7 @@ public class MeetingInfoAdapter extends RecyclerView.Adapter<MeetingInfoAdapter.
 
 
 
+    //instantiate the base of the adapter
     public MeetingInfoAdapter(Context ct_, String names_[], String emails_[], boolean isMentor_, boolean isParent_)
     {
         this.ct = ct_;
@@ -37,6 +39,7 @@ public class MeetingInfoAdapter extends RecyclerView.Adapter<MeetingInfoAdapter.
         isParent = isParent_;
     }
 
+    //create the common view that will be instantiated for each instance of the base users list
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,6 +48,7 @@ public class MeetingInfoAdapter extends RecyclerView.Adapter<MeetingInfoAdapter.
         return new MyViewHolder(view);
     }
 
+    //populate the view with information from the specific user instance
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.nameText.setText(names[position]);
@@ -64,6 +68,7 @@ public class MeetingInfoAdapter extends RecyclerView.Adapter<MeetingInfoAdapter.
         }
     }
 
+    //get the count of users in the adapter
     @Override
     public int getItemCount() {
         return names.length;

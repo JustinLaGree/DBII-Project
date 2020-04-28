@@ -16,6 +16,7 @@ import com.example.db2.models.User;
 
 import java.util.List;
 
+//Show all students under the parents
 public class ViewChildrenActivity extends BaseLogoutBackActivity {
 
     String names_of_children[];
@@ -34,6 +35,7 @@ public class ViewChildrenActivity extends BaseLogoutBackActivity {
         boolean isMentor = true;
         populateArrays();
 
+        //populate recycler view with all students
         MeetingInfoAdapter meetingInfoAdapter = new MeetingInfoAdapter(this, names_of_children, emails_of_children, isMentor, true);
         recyclerview_Children.setAdapter(meetingInfoAdapter);
         recyclerview_Children.setLayoutManager(new LinearLayoutManager(this));
@@ -42,6 +44,7 @@ public class ViewChildrenActivity extends BaseLogoutBackActivity {
     }
 
 
+    //get all students who are under the parent
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     void populateArrays()
     {

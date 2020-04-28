@@ -25,10 +25,16 @@ import com.example.db2.models.User;
 
 import java.util.List;
 
+//Adapter to fill recyclerView with dynamic number of objects, based on users input
 public class MeetingAdminEnrollAdapter extends RecyclerView.Adapter<MeetingAdminEnrollAdapter.MeetingViewHolder> {
 
+    //Activity context to perform activity actions on
     private Context context;
+
+    //list of users that will serve as a base for the views created
     private List<User> users;
+
+    //ancillary info for controlling what we show in the view/how we enroll
     private EnrollmentType enrollmentType;
     private boolean isEnrollable;
 
@@ -44,6 +50,7 @@ public class MeetingAdminEnrollAdapter extends RecyclerView.Adapter<MeetingAdmin
         }
     }
 
+    //instantiate the basis of the adapter
     public MeetingAdminEnrollAdapter(Context context, List<User> users, EnrollmentType enrollmentType, boolean isEnrollable) {
         this.context = context;
         this.users = users;
@@ -51,6 +58,7 @@ public class MeetingAdminEnrollAdapter extends RecyclerView.Adapter<MeetingAdmin
         this.isEnrollable = isEnrollable;
     }
 
+    //create view for which each user will be based on
     @NonNull
     @Override
     public MeetingAdminEnrollAdapter.MeetingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,6 +70,7 @@ public class MeetingAdminEnrollAdapter extends RecyclerView.Adapter<MeetingAdmin
         return mvh;
     }
 
+    //populate views with data from specific user and other ancillary info
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull MeetingAdminEnrollAdapter.MeetingViewHolder holder, int position) {
@@ -92,11 +101,13 @@ public class MeetingAdminEnrollAdapter extends RecyclerView.Adapter<MeetingAdmin
         }
     }
 
+    //get the count of users in the adapter
     @Override
     public int getItemCount() {
         return users.size();
     }
 
+    //get string to base table names off of
     private String getMentTable(){
         switch (this.enrollmentType){
             case MENTEE:
@@ -109,6 +120,7 @@ public class MeetingAdminEnrollAdapter extends RecyclerView.Adapter<MeetingAdmin
         }
     }
 
+    //get string to base table names off of
     private String getEnrollTable(){
         switch (this.enrollmentType){
             case MENTEE:
@@ -121,6 +133,7 @@ public class MeetingAdminEnrollAdapter extends RecyclerView.Adapter<MeetingAdmin
         }
     }
 
+    //enroll the user by executing 2 insert queries
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void enrollUser(User user){
         String mentName = getMentTable();

@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
 
+//show both the back button and logout button in the navbar
 public class BaseLogoutBackActivity extends BaseLogoutOnlyActivity {
 
     @Override
@@ -22,6 +23,7 @@ public class BaseLogoutBackActivity extends BaseLogoutOnlyActivity {
         back_button.setEnabled(true);
         back_button.setVisibility(View.VISIBLE);
 
+        //set the backIntent to the class passed into this activity
         try {
             String className = this.getIntent().getStringExtra("BACK_ACTIVITY");
             Class<?> clazz = Class.forName(className);

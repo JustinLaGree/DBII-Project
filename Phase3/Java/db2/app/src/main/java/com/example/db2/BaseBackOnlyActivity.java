@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+//only display the back button in the navbar
 public class BaseBackOnlyActivity extends BaseLogoutBackActivity {
 
     @Override

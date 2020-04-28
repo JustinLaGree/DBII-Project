@@ -11,15 +11,21 @@ import com.example.db2.models.User;
 
 import java.util.List;
 
+//track the currently logged in user information
 public class UserSession {
+
+    //instance of the logged in user singleton
     private static User instance;
+    //corresponding userType enum value for the logged in user
     private static UserType userType = UserType.NONE;
 
+    //return the value in the singleton instance
     public static User getInstance()
     {
         return instance;
     }
 
+    //set the logged-in user that is stored in the singleton instance
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static User setInstance(User user)
     {
@@ -32,11 +38,13 @@ public class UserSession {
         return instance;
     }
 
+    //get the access-level / userType of the logged-in user
     public static UserType getUserType()
     {
         return userType;
     }
 
+    //calculate the type of user once the logged-in user has been changed/set
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private static UserType findUserType()
     {

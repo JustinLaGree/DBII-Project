@@ -31,8 +31,10 @@ import com.example.db2.models.TimeSlot;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+//Adapter to fill recyclerView with dynamic number of objects, based on materials input
 public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.MaterialViewHolder> {
 
+    //list of materials that will serve as a base for the views created
     private List<Material> materials;
 
     // Provide a reference to the views for each data item
@@ -47,10 +49,12 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
         }
     }
 
+    //instantiate the base of the adapter
     public MaterialAdapter(List<Material> materials) {
         this.materials = materials;
     }
 
+    //create the common view that will be instantiated for each instance of the base materials list
     @NonNull
     @Override
     public MaterialViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,6 +66,7 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
         return mvh;
     }
 
+    //populate the view with information from the specific material instance
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull MaterialViewHolder holder, int position) {
@@ -96,6 +101,7 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
         notesTextView.setText(material.notes);
     }
 
+    //get the count of materials in the adapter
     @Override
     public int getItemCount() {
         return materials.size();

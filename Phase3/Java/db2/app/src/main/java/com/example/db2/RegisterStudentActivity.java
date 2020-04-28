@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.example.db2.helpers.QueryExecution;
 
+//register a student user
 public class RegisterStudentActivity extends BaseBackOnlyActivity {
 
     @Override
@@ -19,6 +20,7 @@ public class RegisterStudentActivity extends BaseBackOnlyActivity {
         setContentView(R.layout.activity_register_student);
         super.onCreate(savedInstanceState);
 
+        //all input fields
         final EditText editText_RegStudentFullName = findViewById(R.id.editText_regStudentFullName);
         final EditText editText_RegStudentEmail = findViewById(R.id.editText_regStudentEmail);
         final EditText editText_RegStudentGradeLevel = findViewById(R.id.editText_regStudentGradeLevel);
@@ -26,10 +28,13 @@ public class RegisterStudentActivity extends BaseBackOnlyActivity {
         final EditText editText_RegStudentPassword = findViewById(R.id.editText_regStudentPassword);
         final EditText editText_RegStudentPhoneNumber = findViewById(R.id.editText_regStudentPhoneNumber);
 
+        //possible redirect activities
         final Intent homeScreenIntent = new Intent(this, LoginActivity.class);
 
+        //buttons
         final Button button_RegStudentSubmit = findViewById(R.id.button_regStudentSubmit);
 
+        //register the student account
         button_RegStudentSubmit.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override

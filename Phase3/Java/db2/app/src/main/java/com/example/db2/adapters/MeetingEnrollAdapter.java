@@ -28,6 +28,7 @@ import com.example.db2.models.Meeting;
 
 import java.util.List;
 
+//Adapter to fill recyclerView with dynamic number of objects, based on meetings input
 public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdapter.MyViewHolder> {
 
     String grades[];
@@ -43,6 +44,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
 
     public static int targetMeetingId;
 
+    //instantiate the basis of the adapter
     public MeetingEnrollAdapter(Context ct, String grades[], String meeting_names[], String dates[], String enrollment[], String times[], String meeting_ids[], int enroll_state, int userID)
     {
         this.ct = ct;
@@ -56,6 +58,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         this.userID = userID;
     }
 
+    //create view for which each user will be based on
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -64,6 +67,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         return new MyViewHolder(view);
     }
 
+    //populate views with data from specific meeting and other ancillary info
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.grademeetingText.setText((Integer.parseInt(grades[position]) + 5) + "th Grade " + meeting_names[position]);
@@ -106,6 +110,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         });
     }
 
+    //get the count of users in the adapter
     @Override
     public int getItemCount() {
         return meeting_names.length;
@@ -132,6 +137,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
         }
     }
 
+    //enroll the user if valid
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void verifyAndEnroll(int enroll_state, int position)
     {
@@ -191,6 +197,7 @@ public class MeetingEnrollAdapter extends RecyclerView.Adapter<MeetingEnrollAdap
 
     }
 
+    //view materials or bulk enroll
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void vieworbulkMeeting(int enroll_state, int position)
     {

@@ -21,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.TimeZone;
 
+//enroll a student in a meeting as a mentor
 public class EnrollMentorStudentActivity extends BaseLogoutBackActivity {
 
     String grades[];
@@ -40,8 +41,10 @@ public class EnrollMentorStudentActivity extends BaseLogoutBackActivity {
 
         final RecyclerView recyclerview_enrollAsMentor = findViewById(R.id.recyclerview_enrollAsMentor);
 
+        //get main data and all ancillary info
         populateArrays();
 
+        //create adapter for available meetings
         MeetingEnrollAdapter meetingEnrollAdapter = new MeetingEnrollAdapter(this, grades, meeting_names, dates, enrollment, times, meeting_ids, enroll_state, userID);
         recyclerview_enrollAsMentor.setAdapter(meetingEnrollAdapter);
         recyclerview_enrollAsMentor.setLayoutManager(new LinearLayoutManager(this));
@@ -52,6 +55,7 @@ public class EnrollMentorStudentActivity extends BaseLogoutBackActivity {
 
     }
 
+    //populate ancillary info about meetings
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     void populateArrays()
     {
@@ -65,6 +69,7 @@ public class EnrollMentorStudentActivity extends BaseLogoutBackActivity {
         }
 
 
+        //get all available meetings
         String query = String.format("SELECT * FROM meetings WHERE group_id IN " +
                         "               (SELECT group_id FROM groups " +
                         "                   WHERE mentor_grade_req <= " +
@@ -85,6 +90,7 @@ public class EnrollMentorStudentActivity extends BaseLogoutBackActivity {
         QueryExecution.executeQuery(query);
         List<Meeting> meetings = QueryExecution.getResponse(Meeting.class);
 
+        //get ancillary info about the meetings
         grades = new String[meetings.size()];
         meeting_names = new String[meetings.size()];
         dates = new String[meetings.size()];

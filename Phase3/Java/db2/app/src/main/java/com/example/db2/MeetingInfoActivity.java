@@ -15,6 +15,7 @@ import com.example.db2.models.User;
 
 import java.util.List;
 
+//show info for a meeting
 public class MeetingInfoActivity extends BaseLogoutBackActivity {
 
     String names_of_mentors[];
@@ -28,6 +29,7 @@ public class MeetingInfoActivity extends BaseLogoutBackActivity {
         setContentView(R.layout.activity_meeting_info);
         super.onCreate(savedInstanceState);
 
+        //get the target meetingId
         String meetingID = getIntent().getStringExtra("meetingID");
         boolean isMentor = checkIfMentor(meetingID);
 
@@ -50,6 +52,7 @@ public class MeetingInfoActivity extends BaseLogoutBackActivity {
 
     }
 
+    //check to see if user is mentor in meeting
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     boolean checkIfMentor(String meetingID)
     {
@@ -60,6 +63,7 @@ public class MeetingInfoActivity extends BaseLogoutBackActivity {
         else return false;
     }
 
+    //populate ancillary info
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     void populateArrays(String meetingID)
     {

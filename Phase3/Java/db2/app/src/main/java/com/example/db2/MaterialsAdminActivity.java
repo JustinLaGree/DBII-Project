@@ -22,6 +22,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.List;
 
+//Show all the current materials and allow admin to add new ones
 public class MaterialsAdminActivity extends BaseLogoutBackActivity {
 
     private Meeting meeting;
@@ -46,6 +47,7 @@ public class MaterialsAdminActivity extends BaseLogoutBackActivity {
         EditText dateText = findViewById(R.id.date_editText);
         Button submitButton = findViewById(R.id.create_button);
 
+        //add a new material
         submitButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -79,12 +81,14 @@ public class MaterialsAdminActivity extends BaseLogoutBackActivity {
                 query = String.format("INSERT INTO assign (meet_id, material_id) VALUES (%d, %d)", meeting.meet_id, insertedMaterial.material_id);
                 QueryExecution.executeQuery(query);
 
+                //refresh activity
                 finish();
                 startActivity(getIntent());
             }
         });
     }
 
+    //build the list of materials that we put in the recyclerView
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void setupMaterialsList(){
         String query = String.format("SELECT * FROM material WHERE material_id IN (SELECT material_id from assign WHERE meet_id=%d) ORDER BY assigned_date DESC", meeting.meet_id);

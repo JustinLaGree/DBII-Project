@@ -16,6 +16,7 @@ import com.example.db2.models.User;
 
 import java.util.List;
 
+//edit the account for a student
 public class EditStudentAccountActivity extends BaseLogoutBackActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -23,6 +24,7 @@ public class EditStudentAccountActivity extends BaseLogoutBackActivity {
         setContentView(R.layout.activity_edit_student_account);
         super.onCreate(savedInstanceState);
 
+        //get all relevant views/controls
         final EditText editFullName = findViewById(R.id.editText_changeName);
         final EditText editPhoneNumber = findViewById(R.id.editText_changePhone);
         final EditText editEmail = findViewById(R.id.editText_changeEmail);
@@ -32,6 +34,7 @@ public class EditStudentAccountActivity extends BaseLogoutBackActivity {
         final Intent landingPageStudentIntent = new Intent(this, LandingStudentActivity.class);
         final Intent landingPageParentIntent = new Intent(this, LandingParentActivity.class);
 
+        //get the current user info
         String name = UserSession.getInstance().name;
         String phone = UserSession.getInstance().phone;
         String email = UserSession.getInstance().email;
@@ -42,6 +45,7 @@ public class EditStudentAccountActivity extends BaseLogoutBackActivity {
 
 
 
+        //decide how fields are populated
         if(isParent)
         {
             editFullName.setText(UserSession.getInstance().name);
@@ -92,6 +96,7 @@ public class EditStudentAccountActivity extends BaseLogoutBackActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //decide query based on which type of user is accessing from where
                 if(isParent)
                 {
                     String submit_query_users = String.format("UPDATE users SET email = '%s', password = '%s', name = '%s', phone = '%s' WHERE id = '%s'",

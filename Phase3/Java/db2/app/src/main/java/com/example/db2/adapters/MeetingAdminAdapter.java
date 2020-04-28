@@ -28,15 +28,22 @@ import com.example.db2.models.TimeSlot;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+//Adapter to fill recyclerView with dynamic number of objects, based on meetings input
 public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapter.MeetingViewHolder> {
 
+    //Activity context to perform activity actions on
     private Context context;
+
+    //list of meetings that will serve as a basis for the views created
     private List<Meeting> meetings;
+
+    //supplementary lists that hold ancillary information about the meeting
     private List<TimeSlot> timeSlots;
     private List<Group> groups;
     private List<Enroll> enrolls;
     private List<Enroll2> enroll2s;
 
+    //selecting a specific meeting will bring focus to that meeting's information
     public static Meeting targetMeeting = null;
 
     // Provide a reference to the views for each data item
@@ -51,6 +58,7 @@ public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapte
         }
     }
 
+    //instantiate base list and other necessary lists
     public MeetingAdminAdapter(Context context, List<Meeting> meetings, List<TimeSlot> timeSlots, List<Group> groups, List<Enroll> enrolls, List<Enroll2> enroll2s) {
         MeetingAdminAdapter.targetMeeting = null;
         this.context = context;
@@ -61,6 +69,7 @@ public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapte
         this.enroll2s = enroll2s;
     }
 
+    //create view for which each meeting will be based on
     @NonNull
     @Override
     public MeetingAdminAdapter.MeetingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -72,6 +81,7 @@ public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapte
         return mvh;
     }
 
+    //populate views with data from specific meeting and other ancillary info
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull MeetingAdminAdapter.MeetingViewHolder holder, int position) {
@@ -131,11 +141,13 @@ public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapte
         });
     }
 
+    //get the number of meetings in adapter
     @Override
     public int getItemCount() {
         return meetings.size();
     }
 
+    //view the enrollment status of a specific meeting
     private void viewEnrollAdminActivity(Meeting meeting) {
         MeetingAdminAdapter.targetMeeting = meeting;
 
@@ -144,6 +156,7 @@ public class MeetingAdminAdapter extends RecyclerView.Adapter<MeetingAdminAdapte
         context.startActivity(enrollAdminIntent);
     }
 
+    //view or create materials for a specific meeting
     private void viewMaterialsAdminActivity(Meeting meeting) {
         MeetingAdminAdapter.targetMeeting = meeting;
 

@@ -16,6 +16,7 @@ import com.example.db2.helpers.UserSession;
 
 import java.util.List;
 
+//landing page when the user is not logged in
 public class LoginActivity extends AppCompatActivity {
 
     public boolean loginError = false;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //get possible redirect activities
         final Intent registerParentIntent = new Intent(this, RegisterParentActivity.class);
         registerParentIntent.putExtra("BACK_ACTIVITY", this.getClass().getName());
         final Intent registerStudentIntent = new Intent(this, RegisterStudentActivity.class);
@@ -34,10 +36,12 @@ public class LoginActivity extends AppCompatActivity {
         final Intent landingStudentIntent = new Intent(this, LandingStudentActivity.class);
         final Intent landingParentIntent = new Intent(this, LandingParentActivity.class);
 
+        //get other controls/views
         final Button button_login = findViewById(R.id.button_login);
         final EditText textBox_email = findViewById(R.id.textBox_email);
         final EditText textBox_password = findViewById(R.id.textBox_password);
 
+        //check to see which type of user and redirect based on ths
         switch (UserSession.getUserType())
         {
             case ADMIN:
@@ -58,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 break;
         }
 
+        //login the user user their email and password
         button_login.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -81,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //go to register page
         final Button button_registerAsParent = findViewById(R.id.button_registerAsParent);
         button_registerAsParent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //go to register page
         final Button button_registerAsStudent = findViewById(R.id.button_registerAsStudent);
         button_registerAsStudent.setOnClickListener(new View.OnClickListener() {
             @Override
