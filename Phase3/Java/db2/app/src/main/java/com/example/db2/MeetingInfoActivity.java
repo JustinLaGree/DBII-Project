@@ -40,10 +40,10 @@ public class MeetingInfoActivity extends BaseLogoutBackActivity {
 
             populateArrays(meetingID);
 
-            MeetingInfoAdapter meetingInfoAdapter = new MeetingInfoAdapter(this, names_of_mentees, emails_of_mentees, isMentor);
+            MeetingInfoAdapter meetingInfoAdapter = new MeetingInfoAdapter(this, names_of_mentees, emails_of_mentees, isMentor, false);
             recyclerview_enrolledParticipants.setAdapter(meetingInfoAdapter);
             recyclerview_enrolledParticipants.setLayoutManager(new LinearLayoutManager(this));
-            MeetingInfoAdapter meetingInfoAdapter_mentors = new MeetingInfoAdapter(this, names_of_mentors, emails_of_mentors, isMentor);
+            MeetingInfoAdapter meetingInfoAdapter_mentors = new MeetingInfoAdapter(this, names_of_mentors, emails_of_mentors, isMentor, false);
             recyclerview_enrolledMentors.setAdapter(meetingInfoAdapter_mentors);
             recyclerview_enrolledMentors.setLayoutManager(new LinearLayoutManager(this));
         }

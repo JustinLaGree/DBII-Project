@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.db2.EditStudentAccountActivity;
+import com.example.db2.LandingParentActivity;
 import com.example.db2.R;
 
 public class MeetingInfoAdapter extends RecyclerView.Adapter<MeetingInfoAdapter.MyViewHolder> {
@@ -21,15 +23,18 @@ public class MeetingInfoAdapter extends RecyclerView.Adapter<MeetingInfoAdapter.
     String emails[];
     boolean isMentor;
     Context ct;
+    boolean isParent;
 
 
 
-    public MeetingInfoAdapter(Context ct_, String names_[], String emails_[], boolean isMentor_)
+
+    public MeetingInfoAdapter(Context ct_, String names_[], String emails_[], boolean isMentor_, boolean isParent_)
     {
         this.ct = ct_;
         names = names_;
         emails = emails_;
         isMentor = isMentor_;
+        isParent = isParent_;
     }
 
     @NonNull
@@ -44,6 +49,19 @@ public class MeetingInfoAdapter extends RecyclerView.Adapter<MeetingInfoAdapter.
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.nameText.setText(names[position]);
         holder.emailText.setText(emails[position]);
+
+        if(isParent) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Intent editStudentIntent = new Intent(ct, EditStudentAccountActivity.class);
+                    editStudentIntent.putExtra("comesFromParent", true);
+                    editStudentIntent.putExtra("name", names[position]);
+                    editStudentIntent.putExtra("email", emails[position]);
+                    ct.startActivity(editStudentIntent);
+                }
+            });
+        }
     }
 
     @Override
